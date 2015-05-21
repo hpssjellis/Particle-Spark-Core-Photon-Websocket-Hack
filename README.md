@@ -14,7 +14,7 @@ npm start
 make a login
 Create A new workspace
 Clone from URL
-this url
+https://github.com/hpssjellis/node-ws-test
 
 Open a terminal
 npm install
