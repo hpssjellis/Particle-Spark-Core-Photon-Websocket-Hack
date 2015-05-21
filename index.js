@@ -2,7 +2,7 @@ var WebSocketServer = require("ws").Server
 var http = require("http")
 var express = require("express")
 var app = express()
-var port = process.env.PORT || 5000
+var port = process.env.PORT || 8080
 
 app.use(express.static(__dirname + "/"))
 
@@ -20,9 +20,11 @@ console.log("websocket server created")
 
 
 
-wss.broadcast = function(data) {
-  for (var i in this.clients)
-    this.clients[i].send(data);
+wss.myBroadcast = function(data) {
+  for (var i in this.clients){
+     this.clients[i].send(data);
+     console.log('sent to client[' + i + '] ' + data);
+  }
 };
 
 
@@ -35,7 +37,7 @@ wss.on("connection", function(ws) {
   var id = setInterval(function() {
         console.log("send ping")
     //ws.send(JSON.stringify(new Date()), function() {  })
-      ws.send("B",function() {  })
+      ws.send("C240",function() {  })
     
   }, 4000)
 
@@ -43,7 +45,7 @@ wss.on("connection", function(ws) {
   
     ws.on('message', function(message) {
         console.log('received: %s', message);
-         wss.broadcast(message);  
+         wss.myBroadcast(message);  
         });  
         
 
