@@ -8,18 +8,15 @@ ws.onmessage = function (event) {
     document.getElementById('myDiv1').innerHTML += event.data + '<br>'; 
 };
 
- ws.onconnection = function (event) {
-    ws.send('something');
-}; 
 
 
 </script>
 
 <input type=button value="send D7-ON = A" onclick="{
-   ws.send('Hi')
+   ws.send('A')
 }">
  Test with: <a href="https://www.websocket.org/echo.html">https://www.websocket.org/echo.html</a> 
-   remember to use  <br><br>wss://your-cloud9-c9.io<br><br> in the box<br>
+   remember to use  <br><br>wss://my-cloud9.c9.io<br><br> in the box<br>
 
 <h1>Sent every 4 s</h1>
 <div id="myDiv1">  here<br>  </div>
