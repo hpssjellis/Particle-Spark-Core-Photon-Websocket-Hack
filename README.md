@@ -9,6 +9,23 @@ npm install
 npm start
 ```
 
+
+#running on Cloud9 http://c9.io
+make a login
+Create A new workspace
+Clone from URL
+this url
+
+Open a terminal
+npm install
+
+right click on the server.js file
+run
+
+right click the index.html file
+preview
+
+
 # Running on Heroku
 
 ``` bash
