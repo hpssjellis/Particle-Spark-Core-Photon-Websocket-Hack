@@ -16,10 +16,24 @@ ws.onmessage = function (event) {
 </script>
 
 <input type=button value="send D7-ON = A" onclick="{
-   ws.send('Hi')
-}">
+   ws.send('A')
+}">...
+
+<input type=button value="send D7-OFF = B" onclick="{
+   ws.send('B')
+}"><br><br><br><br>
+
+<input type=button value="mouseover D7-ON = A" onMouseOver="{
+   ws.send('A')
+}">...
+
+<input type=button value="mouseover D7-OFF = B" onMouseOver="{
+   ws.send('B')
+}"><br>
+
+
  Test with: <a href="https://www.websocket.org/echo.html">https://www.websocket.org/echo.html</a> 
-   remember to use  <br><br>wss://node-ws-test-jerteach.c9.io<br><br> in the box<br>
+   remember to use  <br><br>wss://my-cloud9-server.c9.io<br><br> in the box<br>
 
 <h1>Sent every 4 s</h1>
 <div id="myDiv1">  here<br>  </div>
