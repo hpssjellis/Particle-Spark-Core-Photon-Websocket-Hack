@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku-examples/node-ws-test.git"
+    "url": "https://github.com/hpssjellis/node-ws-test.git"
   },
   "dependencies": {
     "express": "^4.4.5",
