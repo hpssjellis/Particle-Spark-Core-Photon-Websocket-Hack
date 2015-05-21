@@ -1,34 +1,25 @@
-<html>
-  <head>
-    <style>
-      body {
-        font-family: "Helvetica Neue", helvetica, arial;
-        padding: 15px;
-      }
 
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
 
-      ul li {
-        line-height: 1.4;
-      }
-    </style>
+<script>
 
-    <script>
-      var host = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket(host);
-      ws.onmessage = function (event) {
-        var li = document.createElement('li');
-        li.innerHTML = JSON.parse(event.data);
-        document.querySelector('#pings').appendChild(li);
-      };
-    </script>
-  </head>
-  <body>
-    <h1>Pings</h1>
-    <ul id='pings'></ul>
-  </body>
-</html>
+var host = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(host);
+ws.onmessage = function (event) {
+    document.getElementById('myDiv1').innerHTML += event.data + '<br>'; 
+};
+
+ ws.onconnection = function (event) {
+    ws.send('something');
+}; 
+
+
+</script>
+
+<input type=button value="send D7-ON = A" onclick="{
+   ws.send('Hi')
+}">
+ Test with: <a href="https://www.websocket.org/echo.html">https://www.websocket.org/echo.html</a> 
+   remember to use  <br><br>wss://node-ws-test-jerteach.c9.io<br><br> in the box<br>
+
+<h1>Sent every 4 s</h1>
+<div id="myDiv1">  here<br>  </div>
