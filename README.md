@@ -2,7 +2,7 @@
 
 A tiny demo using the [einaros/ws](http://einaros.github.io/ws/) WebSockets implementation.
 
-#running on Cloud 9 http://c9.io
+#running on Cloud 9 http://c9.io with the micro-controler Partice Spark Core
 creat from URL
 enter this url
 
