@@ -22,8 +22,8 @@ npm install
 right click on the server.js file
 run
 
-right click the index.html file
-preview
+main menu-preview
+preview running app
 
 
 # Running on Heroku
