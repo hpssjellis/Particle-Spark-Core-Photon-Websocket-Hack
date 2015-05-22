@@ -4,7 +4,7 @@ TCPClient client;
 char server[] = "node-ws-test-jerteach.c9.io";
 
 
-bool myUsbSerialDebugOn = true;      // set to false when not hooked up to USB
+bool myUsbSerialDebugOn = false;      // set to false when not hooked up to USB
 
 
 int connectToMyServer(String myNothing) {
@@ -25,7 +25,6 @@ int connectToMyServer(String myNothing) {
        }
       return 1; // successfully connected
   } else {
-     digitalWrite(D7, LOW);
      if (myUsbSerialDebugOn){
          Serial.println("failed to connect");
       }
@@ -34,11 +33,30 @@ int connectToMyServer(String myNothing) {
 
 }
 
+
+
+int stopMyServer(String myNothing) {
+
+    digitalWrite(D7, HIGH);
+
+    while(client.read() >= 0);    // ignore the rest of the http request
+    client.stop();                // shut down the client for next connection
+
+    digitalWrite(D7, LOW);
+    if (myUsbSerialDebugOn){
+       Serial.println("successfully disconnected");
+    }
+    return 1;
+
+}
+
+
 void setup() {
 
       pinMode(D7, OUTPUT);
 
       Spark.function("connect", connectToMyServer);
+      Spark.function("stop", stopMyServer);
       digitalWrite(D7, HIGH);
       delay(25000);
       digitalWrite(D7, LOW);
@@ -53,21 +71,27 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(D7, LOW);
+
+  
   if (client.connected()) {
     if (client.available()) {
        
         char myIncoming = client.read();
+
+        
+        
         if (myIncoming == 'A'){ digitalWrite(D7, HIGH);}
+        if (myIncoming == 'B'){ digitalWrite(D7, LOW);}
+        if (myIncoming == 'C'){ RGB.brightness(0); }
+        if (myIncoming == 'D'){ RGB.brightness(100); }
+        if (myIncoming == 'E'){ RGB.brightness(250); }
+        
+        if (myUsbSerialDebugOn){
+            Serial.print(myIncoming);
+        }  
+  
+
       
-      if (myUsbSerialDebugOn){  
-          Serial.print(myIncoming);
-        // delay(2);
-      }
-      
-      
-      } else {
-        //digitalWrite(D7, LOW);
-      }
+      }   
     }
 }
