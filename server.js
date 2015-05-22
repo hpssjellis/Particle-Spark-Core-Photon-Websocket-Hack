@@ -26,14 +26,14 @@ wss.myBroadcast = function(data) {
 
 wss.on("connection", function(ws) {
   var id = setInterval(function() {
-      console.log("send ping: C240")
+      console.log("send ping: C")
       //ws.send(JSON.stringify(new Date()), function() {  })
-      ws.send("C240",function() {  })
+      ws.send("C",function() {  })
     
-  }, 8000)   
+  }, 12000)   
   
   
-  console.log("websocket connection open " + this.clients[0].IP )
+  console.log("websocket connection open " )
   
   ws.on('message', function(message) {
       console.log('received: %s', message);
