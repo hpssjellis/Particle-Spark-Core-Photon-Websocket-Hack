@@ -15,11 +15,16 @@ ws.onmessage = function (event) {
 
 </script>
 
-<input type=button value="send D7-ON = A" onclick="{
+
+<input id="myIn1" type=text value=E ><input type=button value=send onclick="{
+   ws.send(document.all.myIn1.value)
+}"><br>
+
+<input id="myOn" type=button value="send D7-ON = A" onclick="{
    ws.send('A')
 }">...
 
-<input type=button value="send D7-OFF = B" onclick="{
+<input id="myOff"  type=button value="send D7-OFF = B" onclick="{
    ws.send('B')
 }"><br><br><br><br>
 
@@ -33,7 +38,64 @@ ws.onmessage = function (event) {
 
 
  Test with: <a href="https://www.websocket.org/echo.html">https://www.websocket.org/echo.html</a> 
-   remember to use  <br><br>wss://my-cloud9-server.c9.io<br><br> in the box<br>
+   remember to use  <br><br>wss://node-ws-test-jerteach.c9.io<br><br> in the box<br>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+Enter a delay<input type=text id="myDelay" size=20 value=100>  milliseconds per command<br>  
+Timer result <input type=text id="myWaitOut" size=70 > Watch that 10 flashes actually occur. <br>
+Lower the ms until only a few flashes occur or the LED does not turn off!<br>
+On my network I consistently can get 60 ms per command.<br>
+
+<input type=button value="20 Commands Sent Fast" onclick="{
+   var mytestInterval = document.all.myDelay.value*1    
+   var myTimer1 = new Date().getMilliseconds();;  
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*1); 
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*2); 
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*3);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*4);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*5);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*6);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*7);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*8);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*9);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*10);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*11);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*12);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*13);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*14);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*15);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*16);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*17);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*18);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*19);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*20);
+   setTimeout(function(){ document.getElementById('iFrameID').src = 'generic.html' }, mytestInterval*21); 
+   myElapsed = document.all.myDelay.value*20
+   document.all.myWaitOut.value = myElapsed+ ' milliseconds for 20 Core Commands = '+myElapsed/20 +' ms per command'
+}"><br>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 <h1>Sent every 4 s</h1>
 <div id="myDiv1">  here<br>  </div>
