@@ -1,0 +1,111 @@
+<html>
+<head>
+
+
+<title>Particle.io web page control of the Core or Photon using a hacked websocket.<br> Not very secure but it works </title>
+
+<script>
+function myConnect(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/connect'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+function myStop(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/connect'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+
+</script>
+
+</head>
+
+<body onload="{
+   myStorage1 = localStorage.getItem('myStoredText1')
+   if(myStorage1  != null){      
+      document.getElementById('myToken').value = myStorage1 
+    }
+    
+    myStorage2 = localStorage.getItem('myStoredText2')
+    if(myStorage2  != null){
+       document.getElementById('myDeviceId').value = myStorage2 
+      
+    }
+    
+      
+}">
+
+  
+
+<h2 align=center><a href="http://particle.io" >Particle.io web page control of the Core or Photon using a hacked websocket.<br> Not very secure but it works </h2>
+
+
+
+Type in the boxes then click the buttons to activate your Photon.<br><br>
+
+
+
+Device ID:<input id="myDeviceId" name="myCoreID" type=password size=50 placeholder="78dd12345678123456"> 
+Get this from the core area when logged in<br>
+
+
+<input id="myFunctionName" name="myFunction"  type=hidden  value="my-main" > 
+
+
+
+
+<form name="myForm" method="POST" action = "https://api.spark.io/v1/devices/sparkCoreName/myTurnOn" target="myFrameName"><br>
+
+<input id="myParameter" name="params" type=hidden > 
+
+Access Token:<input id="myToken" name="access_token" type=password size=50 placeholder="5622ce6bba702ef6bd3456d5ed26aaa4a28d7c9"> 
+Get this from the settings area when logged into <a href="http://spark.io">http://spark.io</a><br><br>
+
+</form>
+
+<input type="button" value="Store Spark Token and ID locally!" onClick="{
+   localStorage.setItem('myStoredText1', document.all.myToken.value)   
+   localStorage.setItem('myStoredText2', document.all.myDeviceId.value)
+   alert( document.all.myToken.value + ' ' +document.all.myDeviceId.value + ' \nHas been stored')
+}">
+
+
+<br><br>
+
+<input type="button" value="connect" onClick="{
+    myConnect('');
+}">
+
+
+<input type="button" value="stop" onClick="{
+    myStop('');
+}">
+
+
+<br><br>
+
+<input type=hidden id="mySend" value="">
+<iframe style="display:none" width="400" height="200" name="myFrameName" id="myFrameId"></iframe> 
+
+
+
+
+
+Note: The several hidden items on this webpage must remain on the webpage. Change type=hidden to type=text if you wish to see them. Your Core or 
+
+
+Use at your own risk, by Jeremy Ellis<br>
+Website: <a href="http://rocksetta.com/">http://rocksetta.com/</a><br>
+Twitter: @rocksetta
+
+</body>
+</html>
