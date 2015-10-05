@@ -6,6 +6,9 @@ I have changed this demo to work with the Spark Core. Flash the .ino file onto y
 
 Note: the "connect" function will have to be activated to get the Particle.io Photon (formerly Spark.io Core) ready to recieive websocket style information.
 
+Updated Oct4, 2015.
+My bad, I should have given a method to activatet the connect function. I have added a new webpage called activation.html, which needs your core ID and access Token and then click the button "connect" before the Photon can talk to your nodeJs server.
+
 #running on Cloud9 http://c9.io
 make a login
 Create A new workspace
@@ -41,3 +44,16 @@ heroku create
 git push heroku master
 heroku open
 ```
+
+
+
+
+See see a full discussion of this process check out the forum at https://community.particle.io/t/tcp-server-and-client-example-socket-programs-d7-on-please/11307
+
+Note: Use at your own risk.
+
+
+
+
+
+
