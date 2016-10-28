@@ -1,0 +1,178 @@
+
+
+<script>
+
+var host = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(host);
+ws.onmessage = function (event) {
+    document.getElementById('myDiv1').innerHTML = event.data + '<br>'+document.getElementById('myDiv1').innerHTML; 
+};
+
+ ws.onconnection = function (event) {
+    ws.send('something');
+}; 
+
+
+</script>
+
+Use this to test new controls flashed to the Photon
+<input id="myIn1" type=text value=E ><input type=button value=send onclick="{
+   ws.send(document.all.myIn1.value)
+}"><br><br>
+
+<input id="myOn" type=button style="font-size:25px" value="send D7-ON = A using touchstart"    ontouchstart="{ws.send('A');return false;}" onclick="{ws.send('A');}">...
+
+<input id="myOff"  type=button style="font-size:25px" value="send D7-OFF = B using touchstart" ontouchstart="{ws.send('B');return false;}" onclick="{ws.send('B');}"><br><br><br><br>
+
+<input  type=button style="font-size:25px" value="W=Forward"    ontouchstart="{ws.send('W');return false;}" onclick="{ws.send('W');}">...
+
+<input   type=button style="font-size:25px" value="X=Backward" ontouchstart="{ws.send('X');return false;}" onclick="{ws.send('X');}"><br><br><br><br>
+
+<table border=1  >
+   <tr><td></td><td></td><td align=center><input type=button style="font-size:25px" value="M = Fastest" ontouchstart="{ws.send('M');return false;}" onclick="{ws.send('M');}"><br>
+</td><td></td><td></td></tr>
+   <tr><td></td><td></td><td align=center><input type=button style="font-size:25px;" value="L = Fast" ontouchstart="{ws.send('L');return false;}" onclick="{ws.send('L');}"><br>
+</td><td></td><td></td></tr>
+   <tr><td><input type=button style="font-size:25px" value="R = Big Left" ontouchstart="{ws.send('R');return false;}" onclick="{ws.send('R');}">
+</td><td><input type=button style="font-size:25px" value="Q = Nudge Left" ontouchstart="{ws.send('Q');return false;}" onclick="{ws.send('Q');}">
+</td><td align=center><input type=button style="font-size:25px;" value="K = OK" ontouchstart="{ws.send('K');return false;}" onclick="{ws.send('K');}">
+</td><td><input type=button style="font-size:25px" value="S = Nudge Right" ontouchstart="{ws.send('S');return false;}" onclick="{ws.send('S');}">
+</td><td><input type=button style="font-size:25px" value="T = Big Right" ontouchstart="{ws.send('T');return false;}" onclick="{ws.send('T');}"></td></tr>
+   <tr><td></td><td></td><td align=center><input type=button style="font-size:25px" value="J = Medium" ontouchstart="{ws.send('J');return false;}" onclick="{ws.send('J');}">
+</td><td></td><td></td></tr>
+   <tr><td></td><td></td><td align=center><input type=button style="font-size:25px" value="I = Slow" ontouchstart="{ws.send('I');return false;}" onclick="{ws.send('I');}">
+</td><td></td><td></td></tr>
+   <tr><td><input type=button style="font-size:25px" value="U = Coast" ontouchstart="{ws.send('U');return false;}" onclick="{ws.send('U');}"><br>
+</td><td></td><td align=center><input type=button style="font-size:25px" value="H = Stop" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}">
+</td><td></td><td><input type=button style="font-size:25px" value="V = Power Break" ontouchstart="{ws.send('V');return false;}" onclick="{ws.send('V');}">
+</td></tr>
+
+   </table><br>
+
+
+<input type=button style="font-size:25px" value="F = Rotate Left" ontouchstart="{ws.send('F');return false;}" onclick="{ws.send('F');}"><br>
+<input type=button style="font-size:25px" value="G = Rotate Right" ontouchstart="{ws.send('G');return false;}" onclick="{ws.send('G');}"><br><br>
+
+
+<input type=button style="font-size:25px" value="H = Stop" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}"><br><br>
+
+
+     
+   
+   
+   
+   
+ 
+<input type=button value="index.html" onclick="{
+     location = 'index.html'
+ }">  
+    
+
+<input type=button value="activation.html" onclick="{
+     location = 'activation.html'
+ }">  
+      
+   
+    
+<br><br><br><br>  
+<h1>C ping Sent every 4 s</h1>
+<div id="myDiv1">  here<br>  </div>
+  
+   
+ <br><br><br><br>  
+Enter a delay<input type=text id="myDelay" size=20 value=100>  milliseconds per command<br>  
+Timer result <input type=text id="myWaitOut" size=70 > Watch that 10 flashes actually occur. <br>
+Lower the ms until only a few flashes occur or the LED does not turn off!<br>
+On my network I consistently can get 60 ms per command.<br>
+
+<input type=button value="20 Commands Sent Fast" onclick="{
+   var mytestInterval = document.all.myDelay.value*1    
+   var myTimer1 = new Date().getMilliseconds();;  
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*1); 
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*2); 
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*3);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*4);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*5);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*6);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*7);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*8);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*9);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*10);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*11);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*12);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*13);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*14);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*15);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*16);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*17);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*18);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*19);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*20);
+   setTimeout(function(){ document.getElementById('iFrameID').src = 'generic.html' }, mytestInterval*21); 
+   myElapsed = document.all.myDelay.value*20
+   document.all.myWaitOut.value = myElapsed+ ' milliseconds for 20 Core Commands = '+myElapsed/20 +' ms per command'
+}"><br>
+   
+   
+   
+   
+ <br>  
+socket.ino main program loop<br>
+<textarea rows=20 cols=70>
+if (myIncoming == 'A'){ digitalWrite(D7, HIGH);}
+if (myIncoming == 'B'){ digitalWrite(D7, LOW);}
+if (myIncoming == 'C'){ RGB.brightness(0); }
+if (myIncoming == 'D'){ RGB.brightness(100); }
+if (myIncoming == 'E'){ RGB.brightness(250); }  
+
+notes:
+
+F rotate right, right motor only
+G rotate left, left motor only
+
+
+H STOP
+I slowest 50
+J slow 100
+K medium  150
+L OK 200
+M fast 255
+
+N 
+O
+P
+
+Q nudge left both motors adjusted
+R big left both motors adjusted
+
+S nudge right both motors adjusted
+T big right both motors adjusted
+
+U coast
+V break all on
+
+W set forward (default)
+X set backward
+
+
+
+
+
+
+
+
+
+
+
+
+</textarea>
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
