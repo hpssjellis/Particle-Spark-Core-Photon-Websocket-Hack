@@ -11,7 +11,7 @@ My bad, I should have given a method to activatet the connect function. I have a
 
 #running on Cloud9 http://c9.io
 make a login
-Create A new workspace
+Create A new NODEJS workspace
 Clone from URL
 https://github.com/hpssjellis/node-ws-test.git
 
