@@ -52,7 +52,7 @@ int connectToMyServer(String myNothing) {
   digitalWrite(D7, HIGH);
   if (client.connect(server, 80)) {
       client.write("GET / HTTP/1.1\r\n");
-      client.write("Host: socket01-e2teacher.c9users.io\r\n");
+      client.write("Host: socket01-e2teacher.c9users.io\r\n");  // note easiest to copy server here
       client.write("Upgrade: websocket\r\n");
       client.write("Connection: Upgrade\r\n");
       client.write("Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\n");
@@ -107,8 +107,8 @@ void setup() {
       pinMode(D5, OUTPUT); // right
       pinMode(D6, OUTPUT); // right
       
-      pinMode(A4, OUTPUT); // left
-      pinMode(A5, OUTPUT); // right
+      pinMode(A4, OUTPUT); // left analog
+      pinMode(A5, OUTPUT); // right analog
 
       Spark.function("connect", connectToMyServer);
       Spark.function("stop", stopMyServer);
@@ -150,8 +150,8 @@ void loop() {
         if (myIncoming == 'C'){ RGB.brightness(5); }
         if (myIncoming == 'D'){ RGB.brightness(100); }
         if (myIncoming == 'E'){ RGB.brightness(250); }
-        if (myIncoming == 'F'){ myBrake=0; myLeftMotorDirection=1; myRightMotorDirection=2; myLeftMotorSpeed=50; myRightMotorSpeed=50; mySetMotors(); }  // rotate right
-        if (myIncoming == 'G'){ myBrake=0; myLeftMotorDirection=2; myRightMotorDirection=1; myLeftMotorSpeed=50; myRightMotorSpeed=50; mySetMotors(); }  // rotate left
+        if (myIncoming == 'F'){ myBrake=0; myLeftMotorDirection=1; myRightMotorDirection=2; myLeftMotorSpeed=0; myRightMotorSpeed=50; mySetMotors(); }  // rotate right
+        if (myIncoming == 'G'){ myBrake=0; myLeftMotorDirection=2; myRightMotorDirection=1; myLeftMotorSpeed=50; myRightMotorSpeed=0; mySetMotors(); }  // rotate left
 
         if (myIncoming == 'H'){ myLeftMotorSpeed=0; myRightMotorSpeed=0; mySetMotors(); }  // stop
         if (myIncoming == 'I'){ myLeftMotorSpeed=50; myRightMotorSpeed=50; mySetMotors(); }  // slow
