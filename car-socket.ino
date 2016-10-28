@@ -1,7 +1,7 @@
 TCPClient client;
 
 
-char server[] = "socket01-e2teacher.c9users.io";
+char server[] = "socket01-e2teacher.c9users.io";  // set again later!!!
 
 
 bool myUsbSerialDebugOn = false;      // set to false when not hooked up to USB
@@ -40,7 +40,7 @@ void mySetMotors(){
     
     analogWrite(A4, myLeftMotorSpeed); // set motor speeds
     analogWrite(A5, myRightMotorSpeed);
-    delay(3);
+    delay(2);
     digitalWrite(D7, LOW);
 }
 
@@ -50,6 +50,11 @@ void mySetMotors(){
 int connectToMyServer(String myNothing) {
 
   digitalWrite(D7, HIGH);
+  mySafetyCount = 4001;
+
+
+  
+  
   if (client.connect(server, 80)) {
       client.write("GET / HTTP/1.1\r\n");
       client.write("Host: socket01-e2teacher.c9users.io\r\n");  // note easiest to copy server here
@@ -59,14 +64,7 @@ int connectToMyServer(String myNothing) {
       client.write("Sec-WebSocket-Version: 13\r\n");
       client.write("\r\n");
       
-      // set the motors
-      myBrake=0; 
-      myLeftMotorDirection=1; 
-      myRightMotorDirection=1; 
-      myLeftMotorSpeed=0; 
-      myRightMotorSpeed=0;
-      mySetMotors();
-      digitalWrite(D7, LOW);
+
       if (myUsbSerialDebugOn){
          Serial.println("successfully connected");
        }
@@ -78,6 +76,9 @@ int connectToMyServer(String myNothing) {
      return -1; // failed to connect
   }
 
+
+
+
 }
 
 
@@ -85,16 +86,23 @@ int connectToMyServer(String myNothing) {
 int stopMyServer(String myNothing) {
 
     digitalWrite(D7, HIGH);
-
+    mySafetyCount = 4001; 
+    
     while(client.read() >= 0);    // ignore the rest of the http request
     client.stop();                // shut down the client for next connection
+    
 
+    
     digitalWrite(D7, LOW);
     if (myUsbSerialDebugOn){
        Serial.println("successfully disconnected");
     }
     return 1;
+    
+    
+        
 
+    
 }
 
 
