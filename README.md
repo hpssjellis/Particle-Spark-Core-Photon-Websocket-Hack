@@ -13,7 +13,7 @@ My bad, I should have given a method to activatet the connect function. I have a
 make a login
 Create A new NODEJS workspace
 Clone from URL
-https://github.com/hpssjellis/node-ws-test.git
+https://github.com/hpssjellis/Particle-Spark-Core-Photon-Websocket-Hack.git
 
 Open a terminal
 npm install
