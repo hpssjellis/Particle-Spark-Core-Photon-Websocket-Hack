@@ -48,7 +48,7 @@ heroku open
 
 
 
-See see a full discussion of this process check out the forum at https://community.particle.io/t/tcp-server-and-client-example-socket-programs-d7-on-please/11307
+To see a full discussion of this process check out the forum at https://community.particle.io/t/tcp-server-and-client-example-socket-programs-d7-on-please/11307
 
 Note: Use at your own risk.
 
