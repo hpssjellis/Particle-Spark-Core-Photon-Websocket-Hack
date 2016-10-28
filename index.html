@@ -1,5 +1,6 @@
 
 
+
 <script>
 
 var host = location.origin.replace(/^http/, 'ws')
@@ -80,14 +81,19 @@ On my network I consistently can get 60 ms per command.<br>
    setTimeout(function(){ document.getElementById('iFrameID').src = 'generic.html' }, mytestInterval*21); 
    myElapsed = document.all.myDelay.value*20
    document.all.myWaitOut.value = myElapsed+ ' milliseconds for 20 Core Commands = '+myElapsed/20 +' ms per command'
-}"><br>
+}"><br><br>
    
    
    
    
+ <input type=button value="acitvation.html" onclick="{
+     location = 'activation.html'
+ }">  
    
-   
-   
+<input type=button value="car-control.html" onclick="{
+     location = 'car-control.html'
+ }">  
+    
    
    
    
