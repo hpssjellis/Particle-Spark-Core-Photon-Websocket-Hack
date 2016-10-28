@@ -13,7 +13,7 @@ My bad, I should have given a method to activatet the connect function. I have a
 make a login
 Create A new workspace
 Clone from URL
-https://github.com/hpssjellis/node-ws-test
+https://github.com/hpssjellis/node-ws-test.git
 
 Open a terminal
 npm install
