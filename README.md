@@ -21,20 +21,29 @@ npm install
 right click on the server.js file
 run
 
-main menu-preview
-preview running app
+main menu --> preview --> preview running app
 
+This will load the connection page but you will have to first load activation.html
 
 
 Note. Users will have to run activation.html to enter their photon ID and access code before any of this will work. Then you can click the connect button to load the main index.html page that communicates with the photon
+
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 .
+
 From the original Github heroku-examples/node-ws-test
 
 # Running Locally
