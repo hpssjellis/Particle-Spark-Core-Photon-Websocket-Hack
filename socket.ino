@@ -1,7 +1,7 @@
 TCPClient client;
 
 
-char server[] = "node-ws-test-jerteach.c9.io";
+char server[] = "socket01-e2teacher.c9users.io";
 
 
 bool myUsbSerialDebugOn = false;      // set to false when not hooked up to USB
