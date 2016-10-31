@@ -101,21 +101,21 @@ Get this from the settings area when logged into <a href="http://spark.io">http:
 
 <br><br>
 
-<input type="button" value="Connect to the Photon" onClick="{
+<input type="button" style="font-size:25px"  value="Connect to the Photon" onClick="{
     myConnect('');
 }">
 
 
-<input type="button" value="Stop connection" onClick="{
+<input type="button" style="font-size:25px"  value="Stop connection" onClick="{
     myStop('');
-}">
+}"><br><br>
 
-<input type="button" value="Activate Loop" onClick="{
+<input type="button" style="font-size:25px"  value="Activate Loop" onClick="{
     myGo1F('');
 }">
 
 
-<input type="button" value="DeActivateLoop" onClick="{
+<input type="button" style="font-size:25px"  value="DeActivateLoop" onClick="{
     myNotGo1F('');
 }">
 
@@ -176,11 +176,20 @@ Use this to test new controls flashed to the Photon
 
 <input   type=button style="font-size:25px" value="X=Backward" ontouchstart="{ws.send('X');return false;}" onclick="{ws.send('X');}"><br><br><br><br>
 
+
+<input type=button style="font-size:50px" value="H = Stop" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}"><br><br>
+
+
 <table border=1  >
    <tr><td></td><td></td><td align=center><input type=button style="font-size:25px" value="M = Fastest" ontouchstart="{ws.send('M');return false;}" onclick="{ws.send('M');}"><br>
 </td><td></td><td></td></tr>
    <tr><td></td><td></td><td align=center><input type=button style="font-size:25px;" value="L = Fast" ontouchstart="{ws.send('L');return false;}" onclick="{ws.send('L');}"><br>
 </td><td></td><td></td></tr>
+
+   <tr><td></td><td></td><td align=center><input type=button style="font-size:25px" value="J = Faster" ontouchstart="{ws.send('5');return false;}" onclick="{ws.send('5');}">
+</td><td></td><td></td></tr>
+
+
    <tr><td><input type=button style="font-size:25px" value="R = Big Left" ontouchstart="{ws.send('R');return false;}" onclick="{ws.send('R');}">
 </td><td><input type=button style="font-size:25px" value="Q = Nudge Left" ontouchstart="{ws.send('Q');return false;}" onclick="{ws.send('Q');}">
 </td><td align=center><input type=button style="font-size:25px;" value="K = OK" ontouchstart="{ws.send('K');return false;}" onclick="{ws.send('K');}">
@@ -193,7 +202,8 @@ Use this to test new controls flashed to the Photon
 </td><td><input type=button style="font-size:25px" value="3 = -Nudge Right" ontouchstart="{ws.send('3');return false;}" onclick="{ws.send('3');}">
 </td><td><input type=button style="font-size:25px" value="4 = -Big Right" ontouchstart="{ws.send('4');return false;}" onclick="{ws.send('4');}"></td></tr>
    
-
+   <tr><td></td><td></td><td align=center><input type=button style="font-size:25px" value="J = Slower" ontouchstart="{ws.send('6');return false;}" onclick="{ws.send('6');}">
+</td><td></td><td></td></tr>
    <tr><td></td><td></td><td align=center><input type=button style="font-size:25px" value="J = Medium" ontouchstart="{ws.send('J');return false;}" onclick="{ws.send('J');}">
 </td><td></td><td></td></tr>
    <tr><td></td><td></td><td align=center><input type=button style="font-size:25px" value="I = Slow" ontouchstart="{ws.send('I');return false;}" onclick="{ws.send('I');}">
@@ -210,7 +220,7 @@ Use this to test new controls flashed to the Photon
 <input type=button style="font-size:25px" value="G = Rotate Right" ontouchstart="{ws.send('G');return false;}" onclick="{ws.send('G');}"><br><br>
 
 
-<input type=button style="font-size:25px" value="H = Stop" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}"><br><br>
+<input type=button style="font-size:50px" value="H = Stop" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}"><br><br>
 
 
      
@@ -218,16 +228,7 @@ Use this to test new controls flashed to the Photon
    
    
    
- 
-<input type=button value="index.html" onclick="{
-     location = 'index.html'
- }">  
-    
 
-<input type=button value="activation.html" onclick="{
-     location = 'activation.html'
- }">  
-      
    
     
 <br><br><br><br>  
