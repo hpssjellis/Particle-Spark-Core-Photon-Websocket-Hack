@@ -1,4 +1,3 @@
-
 TCPClient client;
 
 
@@ -54,6 +53,8 @@ int connectToMyServer(String myNothing) {
 
   digitalWrite(D7, HIGH);
 
+  String myRandWebSocket = String(rand()*10000+10000); //attempt at random security
+
   
   if (client.connect(server, 80)) {
       client.write("GET / HTTP/1.1\r\n");
@@ -62,7 +63,7 @@ int connectToMyServer(String myNothing) {
       client.write("Upgrade: websocket\r\n");
       client.write("Connection: Upgrade\r\n");
      // client.write("Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\n");
-      client.write("Sec-WebSocket-Key: 444444444444==\r\n");
+      client.write("Sec-WebSocket-Key: "+String(myRandWebSocket)+String(myRandWebSocket)+"==\r\n");
       client.write("Sec-WebSocket-Version: 13\r\n");
       client.write("\r\n");
 
@@ -160,6 +161,9 @@ void setup() {
       
       pinMode(A4, OUTPUT); // left analog
       pinMode(A5, OUTPUT); // right analog
+      
+      
+      randomSeed(analogRead(A0));
 
       Particle.function("connect", connectToMyServer);
       Particle.function("stop", stopMyServer);
@@ -228,12 +232,14 @@ void loop() {
         if (myIncoming == '2'){ myBrake=0; myLeftMotorSpeed-=50;  mySetMotors(); }  // R big left
         if (myIncoming == '3'){ myBrake=0; myRightMotorSpeed-=10; mySetMotors(); }  // S right
         if (myIncoming == '4'){ myBrake=0; myRightMotorSpeed-=50; mySetMotors(); }  // T big right
+        if (myIncoming == '5'){ myBrake=0; myLeftMotorSpeed -=10; myRightMotorSpeed-=10; mySetMotors(); }  // 5 slower
+        if (myIncoming == '6'){ myBrake=0; myLeftMotorSpeed +=10; myRightMotorSpeed+=10; mySetMotors(); }  // 6 faster
 
 
         if (myIncoming == 'U'){ myBrake=1; mySetMotors(); }  // U coast
         if (myIncoming == 'V'){ myBrake=2; mySetMotors(); }  // V power break
-        if (myIncoming == 'X'){ myBrake=0; myLeftMotorDirection=1; myRightMotorDirection=1; mySetMotors(); }  // W set forward
-        if (myIncoming == 'W'){ myBrake=0; myLeftMotorDirection=2; myRightMotorDirection=2; mySetMotors(); }  // X set backward
+        if (myIncoming == 'W'){ myBrake=0; myLeftMotorDirection=1; myRightMotorDirection=1; mySetMotors(); }  // W set forward
+        if (myIncoming == 'X'){ myBrake=0; myLeftMotorDirection=2; myRightMotorDirection=2; mySetMotors(); }  // X set backward
      
         
         if (myUsbSerialDebugOn){
