@@ -1,0 +1,234 @@
+<html>
+<head>
+
+
+<title>Particle.io web page control of the Core or Photon using a hacked websocket.<br> Not very secure but it works </title>
+
+<script>
+function myConnect(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/connect'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+function myStop(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/stop'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+function myGo1F(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/myGo1'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+function myNotGo1F(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/myNotGo1'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+
+</script>
+
+</head>
+
+<body onload="{
+   myStorage1 = localStorage.getItem('myStoredText1')
+   if(myStorage1  != null){      
+      document.getElementById('myToken').value = myStorage1 
+    }
+    
+    myStorage2 = localStorage.getItem('myStoredText2')
+    if(myStorage2  != null){
+       document.getElementById('myDeviceId').value = myStorage2 
+      
+    }
+    
+      
+}">
+
+  
+
+<h2 align=center><a href="http://particle.io" >Particle.io</a>  web page control of the Core or Photon using a hacked websocket.<br> Not very secure but it works </h2>
+
+The core D7 LED should light for 25 seconds and then turn off. Then Click the connect button and the D7 LED should light. After that the nodeJS server should communicate with your Photon
+
+Type in the boxes then click the buttons to activate your Photon websocket to a node js server.<br><br>
+
+
+
+Device ID:<input id="myDeviceId" name="myCoreID" type=password size=50 placeholder="78dd12345678123456"> 
+Get this from the core area when logged in<br>
+
+
+<input id="myFunctionName" name="myFunction"  type=hidden  value="my-main" > 
+
+
+
+
+<form name="myForm" method="POST" action = "https://api.spark.io/v1/devices/sparkCoreName/myTurnOn" target="myFrameName"><br>
+
+<input id="myParameter" name="params" type=hidden > 
+
+Access Token:<input id="myToken" name="access_token" type=password size=50 placeholder="5622ce6bba702ef6bd3456d5ed26aaa4a28d7c9"> 
+Get this from the settings area when logged into <a href="http://spark.io">http://spark.io</a><br><br>
+
+</form>
+
+<input type="button" value="Store Spark Token and ID locally!" onClick="{
+   localStorage.setItem('myStoredText1', document.all.myToken.value)   
+   localStorage.setItem('myStoredText2', document.all.myDeviceId.value)
+   alert( document.all.myToken.value + ' ' +document.all.myDeviceId.value + ' \nHas been stored')
+}">
+
+
+<br><br>
+
+<input type="button" style="font-size:25px"  value="Connect to the Photon" onClick="{
+    myConnect('');
+}">
+
+
+<input type="button" style="font-size:25px"  value="Stop connection" onClick="{
+    myStop('');
+}"><br><br>
+
+<input type="button" style="font-size:25px"  value="Activate Loop" onClick="{
+    myGo1F('');
+}">
+
+
+<input type="button" style="font-size:25px"  value="DeActivateLoop" onClick="{
+    myNotGo1F('');
+}">
+
+
+<br><br><br>
+
+
+
+
+<input type=hidden id="mySend" value="">
+<iframe style="display:none" width="400" height="200" name="myFrameName" id="myFrameId"></iframe> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+var host = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(host);
+ws.onmessage = function (event) {
+    document.getElementById('myDiv1').innerHTML = event.data + '<br>'+document.getElementById('myDiv1').innerHTML; 
+};
+
+ ws.onconnection = function (event) {
+    ws.send('something');
+}; 
+
+
+</script>
+
+Use this to test new controls flashed to the Photon
+<input id="myIn1" type=text value=E ><input type=button value=send onclick="{
+   ws.send(document.all.myIn1.value)
+}"><br><br>
+
+<input id="myOn" type=button style="font-size:25px" value="send D7-ON = A "    ontouchstart="{ws.send('A');return false;}" onclick="{ws.send('A');}">...
+
+<input id="myOff"  type=button style="font-size:25px" value="send D7-OFF = B " ontouchstart="{ws.send('B');return false;}" onclick="{ws.send('B');}"><br><br><br><br>
+
+
+<input   type=button style="font-size:25px" value="STOP" ontouchstart="{ws.send('F');return false;}" onclick="{ws.send('F');}"><br>
+
+
+ <input   type=button style="font-size:25px" value="Fastest" ontouchstart="{ws.send('G');return false;}" onclick="{ws.send('G');}"><br>    
+    
+
+<input  type=button style="font-size:25px" value="Faster" ontouchstart="{ws.send('J');return false;}" onclick="{ws.send('J');}">  
+
+<input  type=button style="font-size:25px" value="OK" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}">  
+
+<input  type=button style="font-size:25px" value="Slower" ontouchstart="{ws.send('K');return false;}" onclick="{ws.send('K');}"><br>   
+   
+ 
+ <input  type=button style="font-size:25px" value="Slowest" ontouchstart="{ws.send('I');return false;}" onclick="{ws.send('I');}"><br>  
+ 
+<input   type=button style="font-size:25px" value="STOP" ontouchstart="{ws.send('F');return false;}" onclick="{ws.send('F');}"><br>
+
+
+
+
+<input type=button style="font-size:25px" value="Full Left" ontouchstart="{ws.send('L');return false;}" onclick="{ws.send('L');}">
+
+
+<input type=button style="font-size:25px" value="More Left" ontouchstart="{ws.send('M');return false;}" onclick="{ws.send('M');}">
+
+<input type=button style="font-size:25px" value="Center" ontouchstart="{ws.send('N');return false;}" onclick="{ws.send('N');}">
+
+<input type=button style="font-size:25px" value="More Right" ontouchstart="{ws.send('O');return false;}" onclick="{ws.send('O');}">
+
+
+<input type=button style="font-size:25px" value="Full Right" ontouchstart="{ws.send('P');return false;}" onclick="{ws.send('P');}"><br>
+
+  
+<input   type=button style="font-size:25px" value="STOP" ontouchstart="{ws.send('F');return false;}" onclick="{ws.send('F');}"><br>
+
+
+
+    
+<br><br><br><br>  
+<h1>C ping Sent every 4 s</h1>
+<div id="myDiv1">  here<br>  </div>
+  
+  
+  
+  
+  
+  
+
+
+
+Note: The several hidden items on this webpage must remain on the webpage. Change type=hidden to type=text if you wish to see them.<br> 
+
+
+Use at your own risk, by Jeremy Ellis<br>
+Website: <a href="http://rocksetta.com/">http://rocksetta.com/</a><br>
+Twitter: @rocksetta
+
+</body>
+</html>
