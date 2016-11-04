@@ -1,5 +1,11 @@
+//SYSTEM_MODE(SEMI_AUTOMATIC);
+
+
 TCPClient client;
 
+
+
+Servo myServo1;   // create servo object to control a servo
 
 
 char server[] = "socket01-e2teacher.c9users.io";  // set again later!!!
@@ -152,6 +158,8 @@ int myNotGo(String myNothing) {
 
 void setup() {
 
+    
+      myServo1.attach(D1); 
       pinMode(D7, OUTPUT);
       
       pinMode(D3, OUTPUT); // left
@@ -170,7 +178,8 @@ void setup() {
       Particle.function("myGo1", myGo);
       Particle.function("myNotGo1", myNotGo);
       digitalWrite(D7, HIGH);
-      delay(25000);
+    //  Particle.connect(); // do not miss this line or you can't flash more code
+      delay(25000);  // Photon can go into safe mode to reflash. Core might need this
       digitalWrite(D7, LOW);
       
       
@@ -213,7 +222,41 @@ void loop() {
         if (myIncoming == 'D'){ RGB.brightness(100); }
         if (myIncoming == 'E'){ RGB.brightness(250); }
         if (myIncoming == 'F'){ myBrake=0; myLeftMotorDirection=1; myRightMotorDirection=2; myLeftMotorSpeed=0; myRightMotorSpeed=50; mySetMotors(); }  // F rotate right
+        if (myIncoming == 'G'){ myBrake=0; myLeftMotorDirection=2; myRightMotorDirection=1; myLeftMotorSpeed=50; myRightMotorSpeed=0; mySetMotors(); }  // G rotate left
+
+        if (myIncoming == 'H'){ myLeftMotorSpeed=0; myRightMotorSpeed=0; mySetMotors(); }  // H stop
+        if (myIncoming == 'I'){ myLeftMotorSpeed=50; myRightMotorSpeed=50; mySetMotors(); }  // I slow
+        if (myIncoming == 'J'){ myLeftMotorSpeed=100; myRightMotorSpeed=100; mySetMotors(); }  // J OK
+        if (myIncoming == 'K'){ myLeftMotorSpeed=150; myRightMotorSpeed=150; mySetMotors(); }  // K medium   
+
+        if (myIncoming == 'L'){ myLeftMotorSpeed=200; myRightMotorSpeed=200; mySetMotors(); }  // L fast
+        if (myIncoming == 'M'){ myLeftMotorSpeed=255; myRightMotorSpeed=255; mySetMotors(); }  // M fastest
+
+        if (myIncoming == 'Q'){ myBrake=0; myLeftMotorSpeed+=10;  mySetMotors(); }  // Q left
+        if (myIncoming == 'R'){ myBrake=0; myLeftMotorSpeed+=50;  mySetMotors(); }  // R big left
+        if (myIncoming == 'S'){ myBrake=0; myRightMotorSpeed+=10; mySetMotors(); }  // S right
+        if (myIncoming == 'T'){ myBrake=0; myRightMotorSpeed+=50; mySetMotors(); }  // T big right
+
+        if (myIncoming == '1'){ myBrake=0; myLeftMotorSpeed-=10;  mySetMotors(); }  // Q left
+        if (myIncoming == '2'){ myBrake=0; myLeftMotorSpeed-=50;  mySetMotors(); }  // R big left
+        if (myIncoming == '3'){ myBrake=0; myRightMotorSpeed-=10; mySetMotors(); }  // S right
+        if (myIncoming == '4'){ myBrake=0; myRightMotorSpeed-=50; mySetMotors(); }  // T big right
+        if (myIncoming == '5'){ myBrake=0; myLeftMotorSpeed -=10; myRightMotorSpeed-=10; mySetMotors(); }  // 5 slower
+        if (myIncoming == '6'){ myBrake=0; myLeftMotorSpeed +=10; myRightMotorSpeed+=10; mySetMotors(); }  // 6 faster
+
+
+        if (myIncoming == 'U'){ myBrake=1; mySetMotors(); }  // U coast
+        if (myIncoming == 'V'){ myBrake=2; mySetMotors(); }  // V power break
+        if (myIncoming == 'W'){ myBrake=0; myLeftMotorDirection=1; myRightMotorDirection=1; mySetMotors(); }  // W set forward
+        if (myIncoming == 'X'){ myBrake=0; myLeftMotorDirection=2; myRightMotorDirection=2; mySetMotors(); }  // X set backward
  
+  
+        if (myIncoming == '7'){ myServo1.write(0); } // 30 degrees Minimum = 0; 
+        if (myIncoming == '8'){ myServo1.write(90); } // 30 degrees Minimum = 0; 
+        if (myIncoming == '9'){ myServo1.write(150); } // 30 degrees Minimum = 0; 
+
+
+     
         
         if (myUsbSerialDebugOn){
             Serial.print(myIncoming);
