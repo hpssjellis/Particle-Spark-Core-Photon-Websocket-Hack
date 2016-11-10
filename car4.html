@@ -1,0 +1,262 @@
+<html>
+<head>
+
+
+<title>Particle.io web page control of the Core or Photon using a hacked websocket.<br> Not very secure but it works </title>
+
+<script>
+function myConnect(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/connect'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+function myStop(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/stop'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+function myGo1F(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/myGo1'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+function myNotGo1F(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/myNotGo1'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+
+</script>
+
+</head>
+
+<body onload="{
+   myStorage1 = localStorage.getItem('myStoredText1')
+   if(myStorage1  != null){      
+      document.getElementById('myToken').value = myStorage1 
+    }
+    
+    myStorage2 = localStorage.getItem('myStoredText2')
+    if(myStorage2  != null){
+       document.getElementById('myDeviceId').value = myStorage2 
+      
+    }
+    
+      
+}">
+
+  
+
+<h2 align=center><a href="http://particle.io" >Particle.io</a>  web page control of the Core or Photon using a hacked websocket.<br> Not very secure but it works </h2>
+
+The core D7 LED should light for 25 seconds and then turn off. Then Click the connect button and the D7 LED should light. After that the nodeJS server should communicate with your Photon
+
+Type in the boxes then click the buttons to activate your Photon websocket to a node js server.<br><br>
+
+
+
+Device ID:<input id="myDeviceId" name="myCoreID" type=password size=50 placeholder="78dd12345678123456"> 
+Get this from the core area when logged in<br>
+
+
+<input id="myFunctionName" name="myFunction"  type=hidden  value="my-main" > 
+
+
+
+
+<form name="myForm" method="POST" action = "https://api.spark.io/v1/devices/sparkCoreName/myTurnOn" target="myFrameName"><br>
+
+<input id="myParameter" name="params" type=hidden > 
+
+Access Token:<input id="myToken" name="access_token" type=password size=50 placeholder="5622ce6bba702ef6bd3456d5ed26aaa4a28d7c9"> 
+Get this from the settings area when logged into <a href="http://spark.io">http://spark.io</a><br><br>
+
+</form>
+
+<input type="button" value="Store Spark Token and ID locally!" onClick="{
+   localStorage.setItem('myStoredText1', document.all.myToken.value)   
+   localStorage.setItem('myStoredText2', document.all.myDeviceId.value)
+   alert( document.all.myToken.value + ' ' +document.all.myDeviceId.value + ' \nHas been stored')
+}">
+
+
+<br><br>
+
+
+<script>
+
+var host = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(host);
+ws.onmessage = function (event) {
+    document.getElementById('myDiv1').innerHTML = event.data + '<br>'+document.getElementById('myDiv1').innerHTML; 
+};
+
+ ws.onconnection = function (event) {
+    ws.send('something');
+}; 
+
+
+</script>
+
+Use this to test new controls flashed to the Photon
+<input id="myIn1" type=text value=E ><input type=button value=send onclick="{
+   ws.send(document.all.myIn1.value)
+}"><br><br>
+
+
+
+
+
+
+<table border=1 width=80% align=center>
+
+<tr style="height:60px"><td>
+
+
+<input type="button"  style="font-size:25px; width:100%; height:100%;"   value="Connect to the Photon" onClick="{
+    myConnect('');
+}">
+
+
+</td><td>
+
+<input type="button"  style="font-size:25px; width:100%; height:100%;"   value="Close Connection" onClick="{
+    myStop('');
+}">
+
+</td></tr>
+<tr style="height:60px"><td>
+<input type="button"  style="font-size:25px; width:100%; height:100%;"   value="Activate Loop" onClick="{
+    myGo1F('');
+}">
+
+</td><td>
+
+<input type="button"  style="font-size:25px; width:100%; height:100%;"   value="De-activate Loop" onClick="{
+    myNotGo1F('');
+}">
+
+</td></tr>
+
+
+<tr style="height:60px">
+<td><input id="myOn" type=button style="font-size:25px; width:100%; height:100%;"  value="send D7-ON = A"    ontouchstart="{ws.send('A');return false;}" onclick="{ws.send('A');}">
+</td>
+<td><input id="myOff"  type=button style="font-size:25px; width:100%; height:100%;"  value="send D7-OFF = B" ontouchstart="{ws.send('B');return false;}" onclick="{ws.send('B');}">
+</td>
+</tr>
+
+
+
+</table> <br><br>
+
+
+
+
+<input type=hidden id="mySend" value="">
+<iframe style="display:none" width="400" height="200" name="myFrameName" id="myFrameId"></iframe> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table border=1 width=80% align=center>
+    <tr  style="height:60px"><td colspan="3" rowspan="3"><input type=button style="font-size:25px; width:100%; height:100%;" value="c = Forward" ontouchstart="{ws.send('c');return false;}" onclick="{ws.send('c');}">
+</td><td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="M = Fast" ontouchstart="{ws.send('M');return false;}" onclick="{ws.send('M');}">
+</td><td colspan="3" rowspan="3"><input type=button  style="font-size:25px; width:100%; height:100%;"  value="H = Stop" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}">
+</td></tr>
+    <tr  style="height:60px"><td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="a = +++" ontouchstart="{ws.send('a');return false;}" onclick="{ws.send('a');}"></td></tr>  
+    <tr  style="height:60px"><td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="6 = +" ontouchstart="{ws.send('6');return false;}" onclick="{ws.send('6');}"></td></tr>  
+
+
+
+
+
+    <tr  style="height:60px">
+    <td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="7 = Left" ontouchstart="{ws.send('7');return false;}" onclick="{ws.send('7');}"></td>
+    <td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="d = LLL" ontouchstart="{ws.send('d');return false;}" onclick="{ws.send('d');}"></td>
+    <td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="1 = L" ontouchstart="{ws.send('1');return false;}" onclick="{ws.send('1');}"></td>
+    <td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="8 = straight" ontouchstart="{ws.send('8');return false;}" onclick="{ws.send('8');}"></td>
+    <td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="3 = R" ontouchstart="{ws.send('3');return false;}" onclick="{ws.send('3');}"></td>
+    <td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="b = RRR" ontouchstart="{ws.send('b');return false;}" onclick="{ws.send('b');}"></td>
+    <td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="9 = Right" ontouchstart="{ws.send('9');return false;}" onclick="{ws.send('9');}"></td>
+    </tr>
+
+    <tr  style="height:60px">
+        <td colspan="3" rowspan="3"><input type=button  style="font-size:25px; width:100%; height:100%;"  value="z = Continue" ontouchstart="{ws.send('z');return false;}" onclick="{ws.send('z');}">
+</td><td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="e = -" ontouchstart="{ws.send('e');return false;}" onclick="{ws.send('e');}"></td>
+<td colspan="3" rowspan="3"><input type=button  style="font-size:25px; width:100%; height:100%;"  value="H = Stop" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}">
+</td></tr>
+
+
+
+
+
+    <tr  style="height:60px"><td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="f = ---" ontouchstart="{ws.send('f');return false;}" onclick="{ws.send('f');}"></td></tr>
+    <tr  style="height:60px"><td><input type=button  style="font-size:25px; width:100%; height:100%;"  value="g = Back" ontouchstart="{ws.send('g');return false;}" onclick="{ws.send('g');}"></td></tr>
+         
+    
+</table>
+
+
+
+
+
+<br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+Note: The several hidden items on this webpage must remain on the webpage. Change type=hidden to type=text if you wish to see them.<br> 
+
+
+Use at your own risk, by Jeremy Ellis<br>
+Website: <a href="http://rocksetta.com/">http://rocksetta.com/</a><br>
+Twitter: @rocksetta
+
+</body>
+</html>
