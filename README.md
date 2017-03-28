@@ -4,8 +4,13 @@ update Mar 27, 2017
 
 So presently this does not seem to be working. A student did get it working last year so I am not sure what is different.
 
+Using a node js server run server.js
 
+then run index.html
 
+and flash socket.ino to the photon.
+
+should connect.
 
 
 
