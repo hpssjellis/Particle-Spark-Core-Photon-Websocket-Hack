@@ -1,5 +1,61 @@
 # Node.js Websocket Test
 
+update Mar 27, 2017
+
+So presently this does not seem to be working. A student did get it working last year so I am not sure what is different.
+
+
+
+
+
+
+.
+
+
+
+.
+
+
+
+
+.
+
+
+
+
+.
+
+
+
+
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Originally a tiny demo using the [einaros/ws](http://einaros.github.io/ws/) WebSockets implementation.
 
 I have changed this demo to work with the Spark Core. Flash the .ino file onto your spark core and then load this github site onto a cloud9 server. The web page buttons should activate the D7 LED on the spark core.
