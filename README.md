@@ -13,6 +13,10 @@ and flash socket.ino to the photon.
 should connect.
 
 
+If you get it working flash
+
+betterSocket.ino to the photon and use the car-control.html web page to control a wifi robotic car.
+
 
 .
 
