@@ -1,5 +1,9 @@
 # Node.js Websocket Test
 
+
+Active webpage at http://hpssjellis.github.io/Particle-Spark-Core-Photon-Websocket-Hack/
+
+
 update Mar 27, 2017
 
 So presently this does not seem to be working. A student did get it working last year so I am not sure what is different.
