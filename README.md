@@ -4,22 +4,27 @@
 Active webpage at http://hpssjellis.github.io/Particle-Spark-Core-Photon-Websocket-Hack/
 
 
-update Mar 27, 2017
+update Mar 28, 2017
 
-So presently this does not seem to be working. A student did get it working last year so I am not sure what is different.
-
-Using a node js server run server.js
-
-then run index.html
-
-and flash socket.ino to the photon.
-
-should connect.
+Briefly it was not working, seems to be working now.
 
 
-If you get it working flash
+Load socket.ino onto the photon (wait 25 s for D7 to go out)
 
-betterSocket.ino to the photon and use the car-control.html web page to control a wifi robotic car.
+can use putty to monitor the serial connection.
+
+run server.js using node js. (auto installation by running npm install)
+
+using your node js server open index.html, enter ID and access code then click connect (uses the cloud to connect the websocket)
+
+Then try the websocket commands can use any single character (case sensitive so should have 255 possible commands)
+click the A button to light D7, the B button to turn off D7
+
+Regualr cloud commands average at about 1200 ms these commands average about 10 ms.
+
+
+
+If the above  works try the carsocket.ino and car-control.html pages for controlling a toy car.
 
 
 .
