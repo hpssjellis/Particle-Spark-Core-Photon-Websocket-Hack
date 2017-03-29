@@ -68,10 +68,7 @@ void setup() {
 
     Spark.function("connect", connectToMyServer);
     Spark.function("stop", stopMyServer);
-    digitalWrite(D7, HIGH);
-    Particle.connect(); // do not miss this line or you can't flash more code
-    delay(25000);
-    digitalWrite(D7, LOW);
+
       
     randomSeed(analogRead(A0));  
     
