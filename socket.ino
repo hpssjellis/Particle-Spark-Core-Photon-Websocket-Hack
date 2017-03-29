@@ -1,7 +1,7 @@
 TCPClient client;
 
 
-char server[] = "sock06-e2teacher.c9users.io";
+char server[] = "sock06-e2teacher.c9users.io"; // Node server needs to allow users to have read access to your url
 
 
 bool myUsbSerialDebugOn = false;      // set to true  when hooked up to USB Will block code until keypressed
