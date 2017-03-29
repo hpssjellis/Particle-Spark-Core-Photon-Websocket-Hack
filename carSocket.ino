@@ -1,4 +1,4 @@
-SYSTEM_MODE(SEMI_AUTOMATIC);
+
 
 
 TCPClient client;
@@ -179,10 +179,7 @@ void setup() {
       Particle.function("stop", stopMyServer);
       Particle.function("myGo1", myGo);
       Particle.function("myNotGo1", myNotGo);
-      digitalWrite(D7, HIGH);
-      Particle.connect(); // do not miss this line or you can't flash more code
-      delay(25000);  // Photon can go into safe mode to reflash. Core might need this
-      digitalWrite(D7, LOW);
+
       
       
     if (myUsbSerialDebugOn){
