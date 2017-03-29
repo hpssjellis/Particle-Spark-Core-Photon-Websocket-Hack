@@ -4,7 +4,7 @@ TCPClient client;
 char server[] = "sock06-e2teacher.c9users.io";
 
 
-bool myUsbSerialDebugOn = true;      // set to false when not hooked up to USB
+bool myUsbSerialDebugOn = false;      // set to true  when hooked up to USB Will block code until keypressed
 
 int connectToMyServer(String myNothing) {
 
