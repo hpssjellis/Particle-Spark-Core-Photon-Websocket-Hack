@@ -8,7 +8,7 @@ TCPClient client;
 Servo myServo1;   // create servo object to control a servo
 
 
-char server[] = "socket01-e2teacher.c9users.io";  // set again later!!!
+char server[] = "socket01-e2teacher.c9users.io";  // // Node server needs to allow users to have read access to your url
 
 
 
