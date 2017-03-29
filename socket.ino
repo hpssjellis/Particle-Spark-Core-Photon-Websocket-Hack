@@ -92,7 +92,7 @@ void loop() {
         
         if (myIncoming == 'A'){ digitalWrite(D7, HIGH);}
         if (myIncoming == 'B'){ digitalWrite(D7, LOW);}
-        if (myIncoming == 'C'){ RGB.brightness(0); }
+        if (myIncoming == 'C'){ RGB.brightness(5); }
         if (myIncoming == 'D'){ RGB.brightness(100); }
         if (myIncoming == 'E'){ RGB.brightness(250); }
         
