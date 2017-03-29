@@ -1,18 +1,12 @@
 {
-  "name": "node-ws-test",
-  "version": "0.0.2",
+  "name": "Particle-Spark-Core-Photon-Websocket-Hack",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hpssjellis/node-ws-test.git"
+    "url": "https://github.com/hpssjellis/Particle-Spark-Core-Photon-Websocket-Hack.git"
   },
   "dependencies": {
     "express": "4.14.0",
     "ws": "0.4.32"
-  },
-  "engines": {
-    "node": "0.10.x"
-  },
-  "scripts": {
-    "start": "node index.html"
   }
 }
