@@ -102,9 +102,9 @@ void loop() {
 
         IPAddress clientIP = client.remoteIP();
         Particle.publish("Remote IP", String(clientIP), 60, PRIVATE);   
-        client.write(byte(129));
-        client.write(byte(1));
-        client.write("A");
+        client.write(byte(129));  // tells websockey using Frames
+        client.write(byte(1));    // sending only 1 byte. works up to 125 bytes
+        client.write("A");        // sending the one byte. any Ascii code !
         if (myUsbSerialDebugOn){
             Serial.print("A");
         }     
