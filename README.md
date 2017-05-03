@@ -7,6 +7,17 @@ Note: This is for very fast communication with the Particle.io Photon and only s
 
 Note every 12 seconds it sends the command "C" which checks the connection is still alive and dims the main LED 
 
+updated May 3rd, 2017
+
+typically about 7 ms delay. should be very good for fast communication with the Photon
+
+On a private server remember to give people access to your application. On a public server that is not an issue
+
+Just got send working so now the photon can receive Ascii instructions and send ascii instruction (255 commands)
+
+OK security activating the photon. Security needs to improve with the website after connection is achieved.
+
+Use at your own risk.
 
 
 
