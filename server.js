@@ -17,7 +17,12 @@ console.log("websocket server created")
 
 
 wss.myBroadcast = function(data) {
+  
+  // I think for security make this a "for" loop with just 2 or 3 connections instead of anyone.
+  // for (var i = 0; i <= 1; i++){  // this would allow one webpage and one photon
   for (var i in this.clients){
+    
+    
      this.clients[i].send(data);
      console.log('sent to client[' + i + '] ' + data);
   }
