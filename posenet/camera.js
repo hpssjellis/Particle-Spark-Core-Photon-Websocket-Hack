@@ -231,7 +231,7 @@ function detectPoseInRealTime(video, net) {
         myTemp =  await JSON.stringify(pose, null, 3)
         document.getElementById('myDiv01').value =   myTemp 
         document.getElementById('myLeftLength').value =   pose.keypoints[3].part
-        
+        console.log(pose.keypoints[3].part)
         
         
         
