@@ -230,12 +230,12 @@ function detectPoseInRealTime(video, net) {
         
         myTemp =  await JSON.stringify(pose, null, 3)
         document.getElementById('myDiv01').value =   myTemp 
-        document.getElementById('myLeftKneeX').value =   await JSON.stringify(pose.keypoints[12].position.x) 
-        document.getElementById('myLeftKneeY').value =   await JSON.stringify(pose.keypoints[12].position.y) 
-        document.getElementById('myLeftAnkleX').value =   await JSON.stringify(pose.keypoints[14].position.x) 
-        document.getElementById('myLeftAnkleY').value =   await JSON.stringify(pose.keypoints[14].position.y) 
+        document.getElementById('myLeftKneeX').value =   await JSON.stringify(pose.keypoints[13].position.x) 
+        document.getElementById('myLeftKneeY').value =   await JSON.stringify(pose.keypoints[13].position.y) 
+        document.getElementById('myLeftAnkleX').value =   await JSON.stringify(pose.keypoints[15].position.x) 
+        document.getElementById('myLeftAnkleY').value =   await JSON.stringify(pose.keypoints[15].position.y) 
+        console.log(pose.keypoints[13].part)
         console.log(pose.keypoints[15].part)
-        console.log(pose.keypoints[16].part)
         
        // document.getElementById('myLeftLength').value =   await JSON.stringify(pose.keypoints[3])
         
