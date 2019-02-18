@@ -230,10 +230,15 @@ function detectPoseInRealTime(video, net) {
         
         myTemp =  await JSON.stringify(pose, null, 3)
         document.getElementById('myDiv01').value =   myTemp 
-        document.getElementById('myLeftKneeX').value =   await JSON.stringify(pose.keypoints[13].position.x) 
-        document.getElementById('myLeftKneeY').value =   await JSON.stringify(pose.keypoints[13].position.y) 
-        document.getElementById('myLeftAnkleX').value =   await JSON.stringify(pose.keypoints[15].position.x) 
-        document.getElementById('myLeftAnkleY').value =   await JSON.stringify(pose.keypoints[15].position.y) 
+        if (await JSON.stringify(pose.keypoints[13].score) > 0.5 ){
+           document.getElementById('myLeftKneeX').value =   await JSON.stringify(pose.keypoints[13].position.x) 
+           document.getElementById('myLeftKneeY').value =   await JSON.stringify(pose.keypoints[13].position.y) 
+        } else {document.getElementById('myLeftKneeX').value = -1;  document.getElementById('myLeftKneeY').value = -1;}
+        
+        if (await JSON.stringify(pose.keypoints[15].score) > 0.5 ){
+           document.getElementById('myLeftAnkleX').value =   await JSON.stringify(pose.keypoints[15].position.x) 
+           document.getElementById('myLeftAnkleY').value =   await JSON.stringify(pose.keypoints[15].position.y) 
+        }  else {  document.getElementById('myLeftAnkleX').value =  -1  ;  document.getElementById('myLeftAnkleY').value = -1; }
         console.log(pose.keypoints[13].part)
         console.log(pose.keypoints[15].part)
         
