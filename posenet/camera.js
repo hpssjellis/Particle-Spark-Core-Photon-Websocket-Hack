@@ -225,10 +225,17 @@ function detectPoseInRealTime(video, net) {
         const pose = await guiState.net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
+//////////////////////////////////// start work here ///////////////////////////////////////////////////////        
+        
+        
         myTemp =  await JSON.stringify(pose, null, 3)
         document.getElementById('myDiv01').value =   myTemp 
         
         
+        
+        
+
+//////////////////////////////////// stop work here ///////////////////////////////////////////////////////                
         
         minPoseConfidence = Number(
           guiState.singlePoseDetection.minPoseConfidence);
