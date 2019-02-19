@@ -230,7 +230,10 @@ function detectPoseInRealTime(video, net) {
         
         myTemp =  await JSON.stringify(pose, null, 3)
         document.getElementById('myDiv01').value =   myTemp 
-        let myLX, myRX, myLY, myRY;
+        let myLX, myRX, myLY, myRY = -1
+        
+        
+        
         if (await JSON.stringify(pose.keypoints[13].score) > 0.5 ){
            myLX =   await JSON.stringify(pose.keypoints[13].position.x) 
            myLY =   await JSON.stringify(pose.keypoints[13].position.y) 
@@ -260,7 +263,7 @@ function detectPoseInRealTime(video, net) {
           if (myAverageHeight < 100 ){ document.getElementById('myTotalSpeed').value = 150 }
           if (myAverageHeight < 200 ){ document.getElementById('myTotalSpeed').value = 100 }
           if (myAverageHeight < 300 ){ document.getElementById('myTotalSpeed').value = 0 }
-        
+        document.getElementById('myTotalSpeed').value = myAverageHeight
         }
         
         
