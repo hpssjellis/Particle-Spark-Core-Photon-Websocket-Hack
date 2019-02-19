@@ -239,8 +239,15 @@ function detectPoseInRealTime(video, net) {
            document.getElementById('myRightKneeX').value =   await JSON.stringify(pose.keypoints[14].position.x) 
            document.getElementById('myRightKneeY').value =   await JSON.stringify(pose.keypoints[14].position.y) 
         }  else {  document.getElementById('myRightKneeX').value =  -1  ;  document.getElementById('myRightKneeY').value = -1; }
-        console.log(pose.keypoints[14].part)
-        console.log(pose.keypoints[15].part)
+        
+        document.getElementById('myTotalSpeed').value = 0
+        document.getElementById('myDirectionToGo').value = 0
+        //myAverageHeight = document.getElementById('myRightKneeY').value
+        //if (){document.getElementById('myTotalSpeed').value = 0}
+        
+        
+       // console.log(pose.keypoints[14].part)
+       // console.log(pose.keypoints[15].part)
         
        // document.getElementById('myLeftLength').value =   await JSON.stringify(pose.keypoints[3])
         
