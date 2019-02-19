@@ -283,7 +283,7 @@ function detectPoseInRealTime(video, net) {
              document.getElementById('myDirectionToGo').value = 'Go Straight' 
           }
           if ((myRX <= 200 ) && (myLX <= 200 )) {
-             document.getElementById('myDirectionToGo').value = 'Go Right' 
+             document.getElementById('myDirectionToGo').value = 'Go Left' 
           }         
           if ((myRX >= 300 ) && (myLX >= 300 )) {
              document.getElementById('myDirectionToGo').value = 'Go Right' 
