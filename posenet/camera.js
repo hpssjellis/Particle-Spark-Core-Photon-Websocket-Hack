@@ -259,11 +259,11 @@ function detectPoseInRealTime(video, net) {
         
         if ((myRY > 0 ) && (myLY > 0)){
           myAverageHeight =   (myRY + myLY) / 2
-          if (myAverageHeight < 0 ){ document.getElementById('myTotalSpeed').value = 200 }
-          if (myAverageHeight < 100 ){ document.getElementById('myTotalSpeed').value = 150 }
-          if (myAverageHeight < 200 ){ document.getElementById('myTotalSpeed').value = 100 }
-          if (myAverageHeight < 300 ){ document.getElementById('myTotalSpeed').value = 0 }
-        document.getElementById('myTotalSpeed').value = myAverageHeight
+          if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 200 }
+          if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 150 }
+          if (myAverageHeight > 200 ){ document.getElementById('myTotalSpeed').value = 100 }
+          if (myAverageHeight > 300 ){ document.getElementById('myTotalSpeed').value = 0 }
+        console.log(myAverageHeight)
         }
         
         
