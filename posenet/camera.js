@@ -260,7 +260,7 @@ function detectPoseInRealTime(video, net) {
         let myAverageHeight = -1
         
         if ((myRY > 0 ) && (myLY > 0)){
-          myAverageHeight =   (myRY + myLY) / 2
+          myAverageHeight =   (myRY + myLY) / 2.0
           if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 200 }
           if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 150 }
           if (myAverageHeight > 200 ){ document.getElementById('myTotalSpeed').value = 100 }
