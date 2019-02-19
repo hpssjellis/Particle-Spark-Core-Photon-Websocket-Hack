@@ -260,7 +260,7 @@ function detectPoseInRealTime(video, net) {
         let myAverageHeight = -1
         
         if ((myRY > 0 ) && (myLY > 0)){
-          console.log('cool')
+          console.log('new')
           console.log(myRY)
           console.log(myLY)
           myAverageHeight =   ((parseInt(myRY) + parseInt(myLY)) / 2.0)
