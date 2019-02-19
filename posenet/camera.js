@@ -255,14 +255,14 @@ function detectPoseInRealTime(video, net) {
         
         
         document.getElementById('myTotalSpeed').value = 0
-        document.getElementById('myDirectionToGo').value = 0
+        document.getElementById('myDirectionToGo').value = 'Stay the course'
 
         let myAverageHeight = -1
         
         if ((myRY > 0 ) && (myLY > 0)){
-          console.log('new')
-          console.log(myRY)
-          console.log(myLY)
+         // console.log('new')
+         // console.log(myRY)
+         // console.log(myLY)
           myAverageHeight =   ((parseInt(myRY) + parseInt(myLY)) / 2.0)
           if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 255 }
           if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 200 }
@@ -273,12 +273,25 @@ function detectPoseInRealTime(video, net) {
         console.log(myAverageHeight)
         }
         
+        let myAverageX = -1;
         
-       // console.log(pose.keypoints[14].part)
-       // console.log(pose.keypoints[15].part)
+        if ((myRX > 0 ) && (myLX > 0)){
+          console.log('new2')
+          console.log(myRX)
+          console.log(myLX)  
+          if ((myRX > 200 ) && (myRX < 300 ) && (myLX > 200 ) && (myLX < 300 ) {
+             document.getElementById('myDirectionToGo').value = 'Go Straight' 
+          }
+          if ((myRX <= 200 ) && (myLX <= 200 ) {
+             document.getElementById('myDirectionToGo').value = 'Go Right' 
+          }         
+          if ((myRX >= 300 ) && (myLX >= 300 ) {
+             document.getElementById('myDirectionToGo').value = 'Go Right' 
+          }
+        }
         
-       // document.getElementById('myLeftLength').value =   await JSON.stringify(pose.keypoints[3])
         
+
         
         
 
