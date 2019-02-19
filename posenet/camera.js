@@ -230,20 +230,38 @@ function detectPoseInRealTime(video, net) {
         
         myTemp =  await JSON.stringify(pose, null, 3)
         document.getElementById('myDiv01').value =   myTemp 
+        let myLX, myRX, myLY, myRY;
         if (await JSON.stringify(pose.keypoints[13].score) > 0.5 ){
-           document.getElementById('myLeftKneeX').value =   await JSON.stringify(pose.keypoints[13].position.x) 
-           document.getElementById('myLeftKneeY').value =   await JSON.stringify(pose.keypoints[13].position.y) 
-        } else {document.getElementById('myLeftKneeX').value = -1;  document.getElementById('myLeftKneeY').value = -1;}
+           myLX =   await JSON.stringify(pose.keypoints[13].position.x) 
+           myLY =   await JSON.stringify(pose.keypoints[13].position.y) 
+        } else {myLX = -1;  myRX = -1;}
+        
+        document.getElementById('myLeftKneeX').value =   myLX 
+        document.getElementById('myLeftKneeY').value =   myLY
         
         if (await JSON.stringify(pose.keypoints[14].score) > 0.5 ){
-           document.getElementById('myRightKneeX').value =   await JSON.stringify(pose.keypoints[14].position.x) 
-           document.getElementById('myRightKneeY').value =   await JSON.stringify(pose.keypoints[14].position.y) 
-        }  else {  document.getElementById('myRightKneeX').value =  -1  ;  document.getElementById('myRightKneeY').value = -1; }
+           myRX =   await JSON.stringify(pose.keypoints[14].position.x) 
+           myRY =   await JSON.stringify(pose.keypoints[14].position.y) 
+        }  else {  myRX =  -1  ;  myLX = -1; }
+        
+        document.getElementById('myRightKneeX').value =   myRX
+        document.getElementById('myRightKneeY').value =   myRY 
+        
+        
         
         document.getElementById('myTotalSpeed').value = 0
         document.getElementById('myDirectionToGo').value = 0
-        //myAverageHeight = document.getElementById('myRightKneeY').value
-        //if (){document.getElementById('myTotalSpeed').value = 0}
+
+        let myAverageHeight = -1
+        
+        if ((myRY > 0 ) && (myLY > 0)){
+          myAverageHeight =   (myRY + myLY) / 2
+          if (myAverageHeight < 0 ){ document.getElementById('myTotalSpeed').value = 200 }
+          if (myAverageHeight < 100 ){ document.getElementById('myTotalSpeed').value = 150 }
+          if (myAverageHeight < 200 ){ document.getElementById('myTotalSpeed').value = 100 }
+          if (myAverageHeight < 300 ){ document.getElementById('myTotalSpeed').value = 0 }
+        
+        }
         
         
        // console.log(pose.keypoints[14].part)
