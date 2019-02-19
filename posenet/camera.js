@@ -230,14 +230,16 @@ function detectPoseInRealTime(video, net) {
         
         myTemp =  await JSON.stringify(pose, null, 3)
         document.getElementById('myDiv01').value =   myTemp 
-        let myLX, myRX, myLY, myRY = -1
-        
+        let myLX = -1
+        let myRX = -1       
+        let myLY = -1
+        let myRY = -1
         
         
         if (await JSON.stringify(pose.keypoints[13].score) > 0.5 ){
            myLX =   await JSON.stringify(pose.keypoints[13].position.x) 
            myLY =   await JSON.stringify(pose.keypoints[13].position.y) 
-        } else {myLX = -1;  myRX = -1;}
+        } else {myLX = -1;  myLY = -1;}
         
         document.getElementById('myLeftKneeX').value =   myLX 
         document.getElementById('myLeftKneeY').value =   myLY
@@ -245,7 +247,7 @@ function detectPoseInRealTime(video, net) {
         if (await JSON.stringify(pose.keypoints[14].score) > 0.5 ){
            myRX =   await JSON.stringify(pose.keypoints[14].position.x) 
            myRY =   await JSON.stringify(pose.keypoints[14].position.y) 
-        }  else {  myRX =  -1  ;  myLX = -1; }
+        }  else {  myRX =  -1  ;  myRY = -1; }
         
         document.getElementById('myRightKneeX').value =   myRX
         document.getElementById('myRightKneeY').value =   myRY 
