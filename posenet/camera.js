@@ -279,13 +279,13 @@ function detectPoseInRealTime(video, net) {
           console.log('new2')
           console.log(myRX)
           console.log(myLX)  
-          if ((myRX > 200 ) && (myRX < 300 ) && (myLX > 200 ) && (myLX < 300 ) {
+          if ((myRX > 200 ) && (myRX < 300 ) && (myLX > 200 ) && (myLX < 300 )) {
              document.getElementById('myDirectionToGo').value = 'Go Straight' 
           }
-          if ((myRX <= 200 ) && (myLX <= 200 ) {
+          if ((myRX <= 200 ) && (myLX <= 200 )) {
              document.getElementById('myDirectionToGo').value = 'Go Right' 
           }         
-          if ((myRX >= 300 ) && (myLX >= 300 ) {
+          if ((myRX >= 300 ) && (myLX >= 300 )) {
              document.getElementById('myDirectionToGo').value = 'Go Right' 
           }
         }
