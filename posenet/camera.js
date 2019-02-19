@@ -264,10 +264,12 @@ function detectPoseInRealTime(video, net) {
           console.log(myRY)
           console.log(myLY)
           myAverageHeight =   ((parseInt(myRY) + parseInt(myLY)) / 2.0)
-          if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 200 }
-          if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 150 }
-          if (myAverageHeight > 200 ){ document.getElementById('myTotalSpeed').value = 100 }
-          if (myAverageHeight > 300 ){ document.getElementById('myTotalSpeed').value = 0 }
+          if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 255 }
+          if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 200 }
+          if (myAverageHeight > 200 ){ document.getElementById('myTotalSpeed').value = 150 }
+          if (myAverageHeight > 300 ){ document.getElementById('myTotalSpeed').value = 120 }
+          if (myAverageHeight > 400 ){ document.getElementById('myTotalSpeed').value = 100 }
+          if (myAverageHeight > 500 ){ document.getElementById('myTotalSpeed').value = 0 }
         console.log(myAverageHeight)
         }
         
