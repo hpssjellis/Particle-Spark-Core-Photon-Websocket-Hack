@@ -230,17 +230,52 @@ function detectPoseInRealTime(video, net) {
         
         myTemp =  await JSON.stringify(pose, null, 3)
         document.getElementById('myDiv01').value =   myTemp 
-        if (await JSON.stringify(pose.keypoints[13].score) > 0.5 ){
-           document.getElementById('myLeftKneeX').value =   await JSON.stringify(pose.keypoints[13].position.x) 
-           document.getElementById('myLeftKneeY').value =   await JSON.stringify(pose.keypoints[13].position.y) 
-        } else {document.getElementById('myLeftKneeX').value = -1;  document.getElementById('myLeftKneeY').value = -1;}
+        let myLX = -1
+        let myRX = -1       
+        let myLY = -1
+        let myRY = -1
         
-        if (await JSON.stringify(pose.keypoints[15].score) > 0.5 ){
-           document.getElementById('myLeftAnkleX').value =   await JSON.stringify(pose.keypoints[15].position.x) 
-           document.getElementById('myLeftAnkleY').value =   await JSON.stringify(pose.keypoints[15].position.y) 
-        }  else {  document.getElementById('myLeftAnkleX').value =  -1  ;  document.getElementById('myLeftAnkleY').value = -1; }
-        console.log(pose.keypoints[13].part)
-        console.log(pose.keypoints[15].part)
+        
+        if (await JSON.stringify(pose.keypoints[13].score) > 0.5 ){
+           myLX =   await JSON.stringify(pose.keypoints[13].position.x) 
+           myLY =   await JSON.stringify(pose.keypoints[13].position.y) 
+        } else {myLX = -1;  myLY = -1;}
+        
+        document.getElementById('myLeftKneeX').value =   myLX 
+        document.getElementById('myLeftKneeY').value =   myLY
+        
+        if (await JSON.stringify(pose.keypoints[14].score) > 0.5 ){
+           myRX =   await JSON.stringify(pose.keypoints[14].position.x) 
+           myRY =   await JSON.stringify(pose.keypoints[14].position.y) 
+        }  else {  myRX =  -1  ;  myRY = -1; }
+        
+        document.getElementById('myRightKneeX').value =   myRX
+        document.getElementById('myRightKneeY').value =   myRY 
+        
+        
+        
+        document.getElementById('myTotalSpeed').value = 0
+        document.getElementById('myDirectionToGo').value = 0
+
+        let myAverageHeight = -1
+        
+        if ((myRY > 0 ) && (myLY > 0)){
+          console.log('new')
+          console.log(myRY)
+          console.log(myLY)
+          myAverageHeight =   ((parseInt(myRY) + parseInt(myLY)) / 2.0)
+          if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 255 }
+          if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 200 }
+          if (myAverageHeight > 200 ){ document.getElementById('myTotalSpeed').value = 150 }
+          if (myAverageHeight > 300 ){ document.getElementById('myTotalSpeed').value = 120 }
+          if (myAverageHeight > 400 ){ document.getElementById('myTotalSpeed').value = 100 }
+          if (myAverageHeight > 500 ){ document.getElementById('myTotalSpeed').value = 0 }
+        console.log(myAverageHeight)
+        }
+        
+        
+       // console.log(pose.keypoints[14].part)
+       // console.log(pose.keypoints[15].part)
         
        // document.getElementById('myLeftLength').value =   await JSON.stringify(pose.keypoints[3])
         
