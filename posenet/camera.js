@@ -264,12 +264,12 @@ function detectPoseInRealTime(video, net) {
          // console.log(myRY)
          // console.log(myLY)
           myAverageHeight =   ((parseInt(myRY) + parseInt(myLY)) / 2.0)
-          if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 255 }
-          if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 200 }
-          if (myAverageHeight > 200 ){ document.getElementById('myTotalSpeed').value = 150 }
-          if (myAverageHeight > 300 ){ document.getElementById('myTotalSpeed').value = 120 }
-          if (myAverageHeight > 400 ){ document.getElementById('myTotalSpeed').value = 100 }
-          if (myAverageHeight > 500 ){ document.getElementById('myTotalSpeed').value = 0 }
+          if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 255; ws.send('H');}    // faster
+          if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 200; ws.send('H');}
+          if (myAverageHeight > 200 ){ document.getElementById('myTotalSpeed').value = 150; ws.send('H');}
+          if (myAverageHeight > 300 ){ document.getElementById('myTotalSpeed').value = 120;ws.send('I'); }  // slower
+          if (myAverageHeight > 400 ){ document.getElementById('myTotalSpeed').value = 100;ws.send('I'); }
+          if (myAverageHeight > 500 ){ document.getElementById('myTotalSpeed').value = 0; ws.send('I'); }
         console.log(myAverageHeight)
         }
         
@@ -279,19 +279,23 @@ function detectPoseInRealTime(video, net) {
           console.log('new2')
           console.log(myRX)
           console.log(myLX)  
-          if ((myRX > 200 ) && (myRX < 300 ) && (myLX > 200 ) && (myLX < 300 )) {
+          if ((myRX > 200 ) && (myRX < 250 ) && (myLX > 200 ) && (myLX < 250 )) {
              document.getElementById('myDirectionToGo').value = 'Go Straight' 
           }
           if ((myRX <= 200 ) && (myLX <= 200 )) {
-             document.getElementById('myDirectionToGo').value = 'Go Right' 
+             document.getElementById('myDirectionToGo').value = 'Go Right'
+             ws.send('K');
           }         
-          if ((myRX >= 300 ) && (myLX >= 300 )) {
-             document.getElementById('myDirectionToGo').value = 'Go Left' 
+          if ((myRX >= 250 ) && (myLX >= 250 )) {
+             document.getElementById('myDirectionToGo').value = 'Go Left'
+             ws.send('J');
           }
-        }
+        } 
         
         
-
+        if ((myRX == -1 ) || (myRY == -1) || (myLX == -1) || (myLY == -1) ){
+           ws.send('I');   // go slower
+       }
         
         
 
