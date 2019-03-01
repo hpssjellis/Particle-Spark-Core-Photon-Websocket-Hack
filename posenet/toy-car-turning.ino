@@ -11,7 +11,7 @@ void loop() {
 
    
     for (int x=0; x <= 200; x++){
-        setDirection(2000, 100);
+        setDirection(2050, 100);
         delay(20);    
       
     }
@@ -24,7 +24,7 @@ void loop() {
  
     
     for (int x=0; x <= 200; x++){
-        setDirection(1000, 100);
+        setDirection(1200, 100);
         delay(20);    
       
     }
@@ -36,7 +36,7 @@ void loop() {
        
        
     for (int x=0; x <= 200; x++){
-        setDirection(3000, 100);
+        setDirection(2900, 100);
         delay(20);    
       
     }
@@ -60,7 +60,7 @@ void setDirection(int myDirection , int mySpeed ){
     // assume A0 for potentiometer reading
     // assume A4 for DC turning motor speed
     // assume D4 for direction. reverse motor wires if wrong
-    int myBias = 40;  // what we are OK for as straight
+    int myBias = 30;  // what we are OK for as straight
     
     if (mySpeed < 50){ mySpeed = 50; }     // minimum turning speed;
     if (mySpeed > 255){ mySpeed = 255; }   // maximum turning speed;
@@ -78,7 +78,7 @@ void setDirection(int myDirection , int mySpeed ){
         analogWrite(A4, mySpeed);  // slowish speed for turning motor
     }    else {
         analogWrite(A4, 0);  // stop the turning motor  
-        Particle.publish("Going stright", String(analogRead(A0)), 60, PRIVATE);
+        Particle.publish("Going straight", String(analogRead(A0)), 60, PRIVATE);
     }
     
     
