@@ -65,7 +65,7 @@ void setDirection(int myDirection , int mySpeed ){
     // assume A0 for potentiometer reading
     // assume A4 for DC turning motor speed
     // assume D4 for direction. reverse motor wires if wrong
-    int myBias = 30;  // what we are OK for as straight
+    int myBias = 100;  // what we are OK for as straight   bias 30 shakes
     
     if (mySpeed < 50){ mySpeed = 50; }     // minimum turning speed;
     if (mySpeed > 255){ mySpeed = 255; }   // maximum turning speed;
