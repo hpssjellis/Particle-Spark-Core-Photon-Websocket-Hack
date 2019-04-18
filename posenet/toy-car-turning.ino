@@ -1,4 +1,9 @@
-
+// on 5 wire turning motor with potentiometer
+// red motor B1
+// black motor B2
+// white 3V3
+// yellow A0
+// brown GND
 
 
 void setup() {
