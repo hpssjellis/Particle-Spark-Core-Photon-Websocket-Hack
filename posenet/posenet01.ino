@@ -69,8 +69,10 @@ void setup() {
     
    // pinMode(A0, INPUT);//potentiometer not needed to set                
 
-    pinMode(D5, OUTPUT);//motor 
-    pinMode(D6, OUTPUT);//motor
+    pinMode(D4, OUTPUT);//turning motor direction
+    pinMode(D5, OUTPUT);//driving motor direction
+    pinMode(D6, OUTPUT);//driving motor direction
+ 
     pinMode(D7, OUTPUT);//LED
     pinMode(A4, OUTPUT);//turning motor
     pinMode(A5, OUTPUT);//Driving motor
