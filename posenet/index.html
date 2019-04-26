@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: black;
+    }
+
+    .footer-text {
+        max-width: 600px;
+        text-align: center;
+        margin: auto;
+    }
+    </style>
+
+<title>Particle.io web page control of the Core or Photon using a hacked websocket.<br> Not very secure but it works </title>
+
+<script>
+function myConnect(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/connect'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+function myStop(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/stop'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+function myGo1F(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/myGo1'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+function myNotGo1F(myValue){     // simplifies sending info to the photon
+    document.all.myParameter.value=myValue
+    document.myForm.action = 'https://api.spark.io/v1/devices/' + document.all.myDeviceId.value + '/myNotGo1'
+    document.all.mySend.value = document.myForm.action 
+    
+    document.myForm.submit();
+}
+
+
+
+
+</script>
+
+</head>
+
+<body onload="{
+   myStorage1 = localStorage.getItem('myStoredText1')
+   if(myStorage1  != null){      
+      document.getElementById('myToken').value = myStorage1 
+    }
+    
+    myStorage2 = localStorage.getItem('myStoredText2')
+    if(myStorage2  != null){
+       document.getElementById('myDeviceId').value = myStorage2 
+      
+    }
+    
+      
+}">
+
+  
+Device ID:<input id="myDeviceId" name="myCoreID" type=password size=50 placeholder="78dd12345678123456"> 
+<input id="myFunctionName" name="myFunction"  type=hidden  value="my-main" > 
+
+<form name="myForm" method="POST" action = "https://api.spark.io/v1/devices/sparkCoreName/myTurnOn" target="myFrameName"><br>
+
+<input id="myParameter" name="params" type=hidden > 
+
+Access Token:<input id="myToken" name="access_token" type=password size=50 placeholder="5622ce6bba702ef6bd3456d5ed26aaa4a28d7c9"> 
+
+</form>
+
+<input type="button" value="Store Spark Token and ID locally!" onClick="{
+   localStorage.setItem('myStoredText1', document.all.myToken.value)   
+   localStorage.setItem('myStoredText2', document.all.myDeviceId.value)
+   alert( document.all.myToken.value + ' ' +document.all.myDeviceId.value + ' \nHas been stored')
+}">
+<br><br>
+<input type="button" style="font-size:25px"  value="Connect to the Photon" onClick="{
+    myConnect('');
+    }">
+
+
+<input type="button" style="font-size:25px"  value="Stop connection" onClick="{
+    myStop('');
+}"><br><br>
+
+
+
+<!--
+<input type="button" style="font-size:25px"  value="Activate Loop" onClick="{
+    myGo1F('');
+}">
+
+
+<input type="button" style="font-size:25px"  value="DeActivateLoop" onClick="{
+    myNotGo1F('');
+}">
+
+-->
+
+
+<br><br><br>
+
+
+ <div id="loading">
+        Loading the model...
+    </div>
+    <div id='main' style='display:none'>
+        <video autoplay="true" id="video" style=" -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        display: none;
+        ">
+        </video>
+        <canvas id="output" />
+    </div>
+    
+    
+    <br>-1 if accuracy score is not above 0.5<br>
+    Left Knee X: <input id="myLeftKneeX" type=text value="-1"><br> 
+    Left Knee Y: <input id="myLeftKneeY" type=text value="-1"><br> <br>
+    
+    Right Knee X: <input id="myRightKneeX" type=text value="-1"><br> 
+    Right Knee Y: <input id="myRightKneeY" type=text value="-1"><br> <br>
+    
+    Total Speed: <input id="myTotalSpeed" type=text value="-1">Based on height of Knees<br> 
+    Direction to go: <input id="myDirectionToGo" type=text value="Stop">Based on Position of Knees<br> 
+    <h1>C ping Sent every 12 s</h1>
+    <div id="myDiv1">  here<br>  </div>
+
+    <textarea rows=5 cols=100 wrap=false id="myDiv01"></textarea>  <br>
+    <p>
+    PoseNet runs with either a <strong>single-pose</strong> or <strong>multi-pose</strong> detection algorithm. The single person pose detector is faster and more accurate but requires only one subject present in the image.
+    <br>
+    <br> The <strong>output stride</strong> and <strong>image scale factor</strong> have the largest effects on accuracy/speed. A <i>higher</i> output stride results in lower accuracy but higher speed. A <i>higher</i> image scale factor results in higher accuracy but lower speed.
+    </p>
+    
+    <div class="footer">
+        <div class="footer-text">
+
+        </div>
+    </div>
+    <div id="myVersionDiv">...</div>
+    <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.2/build/dat.gui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.15.2"> </script> 
+    <script src="https://unpkg.com/@tensorflow-models/posenet"></script> 
+   
+    <script src="demo_util.js"></script>    
+    <script src="stats.min.js"></script>   
+    <script src="camera.js"></script>
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<input type=hidden id="mySend" value="">
+<iframe style="display:none" width="400" height="200" name="myFrameName" id="myFrameId"></iframe> 
+
+<script>
+
+var host = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(host);
+ws.onmessage = function (event) {
+  //  document.getElementById('myDiv1').innerHTML = event.data + '<br>'+document.getElementById('myDiv1').innerHTML; // adds the info
+    document.getElementById('myDiv1').innerHTML = event.data + '<br>';  //+document.getElementById('myDiv1').innerHTML; 
+};
+
+ ws.onconnection = function (event) {
+    ws.send('something');
+}; 
+
+
+</script>
+<br><br><br><br>  
+
+
+Use this to test new controls flashed to the Photon
+<input id="myIn1" type=text value=E ><input type=button value=send onclick="{
+   ws.send(document.all.myIn1.value)
+}"><br><br>
+
+<input id="myOn" type=button style="font-size:25px" value="send D7-ON = A using touchstart"    ontouchstart="{ws.send('A');return false;}" onclick="{ws.send('A');}">
+<input id="myOff"  type=button style="font-size:25px" value="send D7-OFF = B using touchstart" ontouchstart="{ws.send('B');return false;}" onclick="{ws.send('B');}"><br><br><br><br>
+<table>
+<input id="SendF"  type=button style="font-size:25px" value="F forward" ontouchstart="{ws.send('F');return false;}" onclick="{ws.send('F');}">
+<input id="SendG"  type=button style="font-size:25px" value="G backward" ontouchstart="{ws.send('G');return false;}" onclick="{ws.send('G');}"> 
+<input id="SendH"  type=button style="font-size:25px" value="H faster" ontouchstart="{ws.send('H');return false;}" onclick="{ws.send('H');}">
+<input id="SendI"  type=button style="font-size:25px" value="I slower" ontouchstart="{ws.send('I');return false;}" onclick="{ws.send('I');}">
+</table>
+    <tr>
+        <td></td>
+    </tr>
+    <br><br>
+<input id="SendJ"  type=button style="font-size:25px" value="J left" ontouchstart="{ws.send('J');return false;}" onclick="{ws.send('J');}";>
+<input id="SendK"  type=button style="font-size:25px" value="K right" ontouchstart="{ws.send('K');return false;}" onclick="{ws.send('K')};">
+<br>
+<input id="SendL"  type=button style="font-size:25px" value="L turn faster" ontouchstart="{ws.send('L');return false;}" onclick="{ws.send('L');}">
+<input id="SendM"  type=button style="font-size:25px" value="M turn slower" ontouchstart="{ws.send('M');return false;}" onclick="{ws.send('M');}">
+<input id="SendZ"  type=button style="font-size:25px" value="Z Emergency Stop" ontouchstart="{ws.send('Z');return false;}" onclick="{ws.send('Z');}">
+<br><br>
+
+  
+  
+
+
+</body>
+</html>
