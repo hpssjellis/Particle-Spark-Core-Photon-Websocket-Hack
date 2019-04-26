@@ -256,21 +256,24 @@ function detectPoseInRealTime(video, net) {
         
         document.getElementById('myTotalSpeed').value = 0
         document.getElementById('myDirectionToGo').value = 'Stay the course'
+        // ws.send('P');
 
         let myAverageHeight = -1
+        let myShowSpot = 0
         
         if ((myRY > 0 ) && (myLY > 0)){
          // console.log('new')
          // console.log(myRY)
          // console.log(myLY)
           myAverageHeight =   ((parseInt(myRY) + parseInt(myLY)) / 2.0)
-          if (myAverageHeight > 0 ){ document.getElementById('myTotalSpeed').value = 255;   ws.send('H');}    // faster
-          if (myAverageHeight > 100 ){ document.getElementById('myTotalSpeed').value = 200; ws.send('H');}
-          if (myAverageHeight > 200 ){ document.getElementById('myTotalSpeed').value = 150; ws.send('H');}
-          if (myAverageHeight > 300 ){ document.getElementById('myTotalSpeed').value = 120; ws.send('I'); }  // slower
-          if (myAverageHeight > 400 ){ document.getElementById('myTotalSpeed').value = 100; ws.send('I'); }
-          if (myAverageHeight > 500 ){ document.getElementById('myTotalSpeed').value = 0;   ws.send('Z'); }  // stop both motors
+          
+          if (myAverageHeight < 100 ){ myShowSpot = 0;   ws.send('Z'); }  // stop both motors
+
+          if (myAverageHeight < 300 ){ myShowSpot -= 10; ws.send('I');} // slower if high on screen
+          if (myAverageHeight >= 300 ){ myShowSpot += 10; ws.send('H'); } // faster if low on screen
+          
         console.log(myAverageHeight)
+        document.getElementById('myTotalSpeed').value = myShowSpot
         }
         
         let myAverageX = -1;
@@ -279,15 +282,15 @@ function detectPoseInRealTime(video, net) {
           console.log('new2')
           console.log(myRX)
           console.log(myLX)  
-          if ((myRX > 200 ) && (myRX < 250 ) && (myLX > 200 ) && (myLX < 250 )) {
+          if ((myRX > 150  && myRX < 300 ) && (myLX > 150  && myLX < 300 )) {
              document.getElementById('myDirectionToGo').value = 'Go Straight' 
              ws.send('P');
           }
-          if ((myRX <= 200 ) && (myLX <= 200 )) {
+          if ((myRX <= 150 ) && (myLX <= 150 )) {
              document.getElementById('myDirectionToGo').value = 'Go Right'
              ws.send('K');
           }         
-          if ((myRX >= 250 ) && (myLX >= 250 )) {
+          if ((myRX >= 300 ) && (myLX >= 300 )) {
              document.getElementById('myDirectionToGo').value = 'Go Left'
              ws.send('J');
           }
