@@ -14,9 +14,11 @@ https://www.youtube.com/watch?v=zRZJHMFL0p4
 
 April 29th, 2019. Great news. I just got this working on [repl.it](http://repl.it)
 
-I just needed to change server.js to index.js  
+I just needed to change "server.js" to "index.js"  
 
-This is really good news as [cloud9](http://c9.io) is shutting down in June 2019 and becoming [AWS cloud9](https://aws.amazon.com/cloud9/) which has a much more advanced payment process and honestly completely confuses me.
+This is really good news as [cloud9](http://c9.io) is shutting down in June 2019 and becoming [AWS cloud9](https://aws.amazon.com/cloud9/) which has a much more advanced payment process and honestly completely confuses me. 
+
+[repl.it](http://repl.it) seems much more like the original cloud9 and seems to be free.
 
 
 
