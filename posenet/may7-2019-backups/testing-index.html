@@ -163,20 +163,27 @@ Use this to test new controls flashed to the Photon
 
 <input id="myOn" type=button style="font-size:25px" value="send D7-ON = A using touchstart"    ontouchstart="{ws.send('A');return false;}" onclick="{ws.send('A');}">...
 
-<input id="myOff"  type=button style="font-size:25px" value="send D7-OFF = B using touchstart" ontouchstart="{ws.send('B');return false;}" onclick="{ws.send('B');}"><br><br><br><br>
+<input id="myOff"  type=button style="font-size:25px" value="send D7-OFF = B using touchstart" ontouchstart="{ws.send('B');return false;}" onclick="{ws.send('B');}"><br>
 
 <input   type=button style="font-size:25px" value="sendZ Emergency stop" ontouchstart="{ws.send('Z');return false;}" onclick="{ws.send('Z');}">
 
-<input   type=button style="font-size:25px" value="sendY Reset stop" ontouchstart="{ws.send('Y');return false;}" onclick="{ws.send('Y');}">
-
-<input   type=button style="font-size:25px" value=" go left slower" ontouchstart="{ws.send('p');return false;}" onclick="{ws.send('p');}">
-
-
-<input   type=button style="font-size:25px" value="go straight" ontouchstart="{ws.send('t');return false;}" onclick="{ws.send('t');}">
+<input   type=button style="font-size:25px" value="sendY Reset stop" ontouchstart="{ws.send('Y');return false;}" onclick="{ws.send('Y');}"><br><br>
 
 
 
-<input   type=button style="font-size:25px" value="go right faster" ontouchstart="{ws.send('x');return false;}" onclick="{ws.send('x');}"><br>
+
+
+<input   type=button style="font-size:25px" value="p go left slower" ontouchstart="{ws.send('p');return false;}" onclick="{ws.send('p');}">
+<input   type=button style="font-size:25px" value="q go straight slower" ontouchstart="{ws.send('q');return false;}" onclick="{ws.send('q');}">
+<input   type=button style="font-size:25px" value="r go right slower" ontouchstart="{ws.send('r');return false;}" onclick="{ws.send('r');}">
+<br>
+<input   type=button style="font-size:25px" value="s go left medium" ontouchstart="{ws.send('s');return false;}" onclick="{ws.send('s');}">
+<input   type=button style="font-size:25px" value="t go straight medium" ontouchstart="{ws.send('t');return false;}" onclick="{ws.send('t');}">
+<input   type=button style="font-size:25px" value="u go right medium" ontouchstart="{ws.send('u');return false;}" onclick="{ws.send('u');}">
+<br>
+<input   type=button style="font-size:25px" value="v go left faster" ontouchstart="{ws.send('v');return false;}" onclick="{ws.send('v');}">
+<input   type=button style="font-size:25px" value="w go straight faster" ontouchstart="{ws.send('w');return false;}" onclick="{ws.send('w');}">
+<input   type=button style="font-size:25px" value="x go right faster" ontouchstart="{ws.send('x');return false;}" onclick="{ws.send('x');}">
 
    
    
