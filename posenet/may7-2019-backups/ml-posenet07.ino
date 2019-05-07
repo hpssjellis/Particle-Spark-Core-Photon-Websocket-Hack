@@ -67,7 +67,7 @@ int stopMyServer(String myNothing) {
  
  
 void setup() {
-    if (myUsbSerialDebugOn){ Serial.begin(9600); }
+
     
     Particle.connect();
     // assume A0 for potentiometer reading
@@ -103,7 +103,7 @@ void setup() {
     // set direction to forward "G"
     digitalWrite(D5, 1); 
     digitalWrite(D6,0);
-    stopAll();             // make sure everything is stopped on boot
+   // stopAll();             // make sure everything is stopped on boot
     
 }  // end setup
  
@@ -245,7 +245,9 @@ void loop() {
             Serial.print(" DS:");
             Serial.print(myDriveSpeed);
             Serial.print(" TA:");
-            Serial.println(myTurnAmount);
+            Serial.print(myTurnAmount);
+            Serial.print(" A0:");
+            Serial.println(analogRead(A0));
         }  
   
  
@@ -283,7 +285,7 @@ void setDirection(int myDirection , int myTurnSpeed ){
     // assume A0 for potentiometer reading
     // assume A4 for DC turning motor speed
     // assume D4 for direction. reverse motor wires if wrong
-    int myBias = 30;  // what we are OK for as straight
+    int myBias = 100;  // what we are OK for as straight
 
     
 
@@ -314,8 +316,9 @@ void setDirection(int myDirection , int myTurnSpeed ){
     
     
     
-   // delay(200);          // get rid of this soon
-  //  analogWrite(A4, 0);  // stop turning motor
+    delay(5);          // get rid of this soon
+    myTurnSpeed = 0;
+    analogWrite(A4, 0);  // stop turning motor
 }
 
 
