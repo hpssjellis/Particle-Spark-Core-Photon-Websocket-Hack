@@ -36,7 +36,7 @@ This link shows the motor connection male end you need the female end! https://w
 3. $24.95 USD From Pololu get a Big motor driver 1451  https://www.pololu.com/product/1451
 4. $19.00 USD From particle.io get a Photon (with Headers)  https://store.particle.io/products/photon
 
-5. Need to 3D Print the car tray ![](https://github.com/hpssjellis/my-3D-printing-stl/blob/master/shredder/rc-Car-frame21-v2-.stl)  and cell phone holder https://github.com/hpssjellis/my-3D-printing-stl/blob/master/shredder/rc-Car-frame22-camholder-tilt04.stl
+5. Need to 3D Print the car tray https://github.com/hpssjellis/my-3D-printing-stl/blob/master/shredder/rc-Car-frame21-v2-.stl  and cell phone holder https://github.com/hpssjellis/my-3D-printing-stl/blob/master/shredder/rc-Car-frame22-camholder-tilt04.stl
 
 6. Need a Cell Phone with Wifi abilities and a small cell phone charger to Power the Photon. (Or look into a small Pololu step down voltage regulator https://www.pololu.com/search?query=5V+pull+down+board&x=0&y=0 for the Photon )
 
