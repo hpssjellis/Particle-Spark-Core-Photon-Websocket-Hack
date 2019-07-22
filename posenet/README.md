@@ -22,7 +22,7 @@ https://hpssjellis.github.io/Particle-Spark-Core-Photon-Websocket-Hack/posenet/i
 Costs:
 
 
-1. July 2019 $169.99 CDN Shredder Car (Note: older brushed version with older lithium ion battery) Can be purchased at the Abbotsford location of the Canadian Collectors club  http://www.canadiancollectorsclub.com/
+1. July 2019 $169.99 CDN Shredder Car (Note: We want the older says upgraded brushed motor version with older lithium ion battery. Not the brushless with lithium polymer battery which is more expensive) Can be purchased at the Abbotsford location of the Canadian Collectors club  http://www.canadiancollectorsclub.com/
 
 or online at https://www.rcpro.ca/product-page/1-12-4wd-upgraded-monster-truck
 
@@ -40,7 +40,7 @@ This link shows the motor connection male end you need the female end! https://w
 
 6. Need a Cell Phone with Wifi abilities and a small cell phone charger to Power the Photon. (Or look into a small Pololu step down voltage regulator https://www.pololu.com/search?query=5V+pull+down+board&x=0&y=0 for the Photon )
 
-7. Various solid wires size 22 various colours including black and red. Also should have a black and red about 4 inches larger sized wires for direct connection to the car Battery.
+7. Various solid wires size 22 various colours including black and red. Also should have a black and a red wire about 4 inches long and slightly wider for direct connection to the car Battery.
 
 8. Wire striper and soldering iron with Non-Lead solder.
 
