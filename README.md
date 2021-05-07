@@ -1,5 +1,27 @@
 # Node.js Websocket Test
 
+ # update May 2021 Using Gitpod
+ Login to Github then right-click this link --> open in new window (So it can process while you do other stuff)
+ 
+ https://gitpod.io/#github.com/hpssjellis/Particle-Spark-Core-Photon-Websocket-Hack
+
+
+
+Then 
+
+```
+npm install
+```
+
+
+Open Browser window
+
+
+And presto you are in the WebApp that students did very early in the year.
+
+
+---------------------------------
+
 
 
 
